@@ -1,5 +1,12 @@
 class EventSerializer < ActiveModel::Serializer
   attributes :id, :title, :completed, :date, :goals
   has_many :goals
-  # has_many :tasks
+  
+  def goals
+    object.goals.map do |goal|
+      GoalSerializer.new(goal).attributes
+    end
+  end
+
+
 end
