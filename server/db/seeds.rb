@@ -20,7 +20,7 @@ g2 = Goal.create(description: "graduate", completed: false, date: "2023-2-17", e
 
 
 t1 = Task.create(description: "wash the dishes", completed: false, date: "2023-2-1", goal_id: g1.id, event_id: e2.id, user_id: u1.id)
-t2 = Task.create(description: "walk the dog", completed: true, date: "2023-2-17", user_id: u1.id)
+t2 = Task.create(description: "get on zoom", completed: true, date: "2023-2-17", user_id: u1.id, goal_id: g2.id)
 
 
 
