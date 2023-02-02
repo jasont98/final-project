@@ -39,7 +39,7 @@ const Goal = () => {
 return (
     <div>
       {goals.map((goal) => (
-          <ul>
+          <ul key={goal.id}>
           {goal.description}, {goal.date}, completed? {goal.completed}{' '}
           <button onClick={() => toggleGoalCompletion(goal)}>
             {goal.completed ? 'Incomplete' : 'Complete'}

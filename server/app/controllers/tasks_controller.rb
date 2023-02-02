@@ -24,7 +24,7 @@ class TasksController < ApplicationController
     private 
 
     def task_params 
-        params.permit(:description, :date, :user_id, :completed)
+        params.permit(:id, :description, :date, :user_id, :completed)
     end
     
     def find_tasks

@@ -39,7 +39,7 @@ const Event = () => {
 return (
     <div>
       {events.map((event) => (
-          <ul>
+          <ul key={event.id}>
           {event.title}, {event.date}, completed? {event.completed}{' '}
           <button onClick={() => toggleGoalCompletion(event)}>
             {event.completed ? 'Incomplete' : 'Complete'}

@@ -23,7 +23,7 @@ class GoalsController < ApplicationController
     private 
 
     def goal_params 
-        params.permit(:description, :completed, :date, :user_id, :event_id)
+        params.permit(:id, :description, :completed, :date, :user_id, :event_id)
     end
 
     def find_goals

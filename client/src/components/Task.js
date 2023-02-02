@@ -39,7 +39,7 @@ const Task = () => {
 return (
     <div>
       {tasks.map((task) => (
-          <ul>
+          <ul key={task.id}>
           {task.description}, {task.date}, completed? {task.completed}{' '}
           <button onClick={() => toggleTaskCompletion(task)}>
             {task.completed ? 'Incomplete' : 'Complete'}
