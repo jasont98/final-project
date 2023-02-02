@@ -1,7 +1,7 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 require 'pry'
 
-puts "🌱 Seeding spices..."
+puts "🌱 Seeding plans..."
 
 # Seed your database here
 
@@ -10,7 +10,7 @@ Goal.destroy_all
 Event.destroy_all
 User.destroy_all
 
-u1 = User.create(name: "Jason T", birthday: "1998-10-10", date_joined: "2023-2-1", email: "jt@email.com", password_digest: "jason" )
+u1 = User.create(name: "Jason T", birthday: "1998-10-10", date_joined: "2023-2-1", email: "jt@email.com", password: "jason")
 
 e1 = Event.create(title: "graduation day", completed: false, date: "2023-2-17", user_id: u1.id)
 e2 = Event.create(title: "big event", completed: false, date: "2023-2-18", user_id: u1.id)
