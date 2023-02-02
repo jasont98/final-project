@@ -35,7 +35,7 @@ function RegistrationForm({setUser}) {
     setUser(null)
   } else {
   setUser(data)
-  navigate("/")
+  navigate("/home")
   }
 })
 }
