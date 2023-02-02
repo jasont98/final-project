@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  completed?boolean: MyString
+  date: 2023-02-01
+  user: one
+
+two:
+  title: MyString
+  completed?boolean: MyString
+  date: 2023-02-01
+  user: two
