@@ -1,8 +1,12 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
 
+
 const Task = () => {
     const [tasks, setTasks] = useState([])
+    const [newTask, setNewTask] = useState({});
+    const [description, setDescription] = useState('');
+    const [date, setDate] = useState('');
 
     useEffect(() => {
       fetch("/tasks")
@@ -36,7 +40,41 @@ const Task = () => {
 };
 
 
-return (
+const handleCreateTask = async (event) => {
+    event.preventDefault();
+    const taskData = {
+      description: event.target.elements.description.value,
+      date: event.target.elements.date.value
+    };
+    setNewTask(taskData);
+    setTasks([...tasks, taskData]);
+    try {
+      const response = await fetch("/tasks", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(taskData)
+      });
+      const createdTask = await response.json();
+      setTasks(prevTasks => prevTasks.map(prevTask => prevTask === newTask ? createdTask : prevTask));
+      setNewTask({});
+    } catch (error) {
+      setTasks(tasks.filter(task => task !== newTask));
+      setNewTask({});
+      console.error(error);
+    }
+  };
+
+  const handleChange = (e) => {
+    if (e.target.name === 'description') {
+      setDescription(e.target.value);
+    } else if (e.target.name === 'date') {
+      setDate(e.target.value);
+    }
+  };
+  
+  return (
     <div>
       {tasks.map((task) => (
           <ul key={task.id}>
@@ -47,8 +85,24 @@ return (
           <button onClick={() => handleDelete(task.id)}>Delete</button>
         </ul>
       ))}
-    </div>
-  )
+      <form onSubmit={handleCreateTask}>
+      <input
+       type="text"
+       name="description"
+       value={description}
+       onChange={handleChange}
+       placeholder="Task description"
+     />
+<input
+       type="date"
+       name="date"
+       value={date}
+       onChange={handleChange}
+     />
+<button type="submit">Create Task</button>
+</form>
+</div>
+);
 }
 
 export default Task
