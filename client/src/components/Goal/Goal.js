@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import GoalForm from './GoalForm';
 import {
   deleteGoalWithServer,
   updateGoalWithServer,
@@ -8,11 +9,12 @@ import {
   setGoalForm,
   setShowInputs,
   setEditingGoal,
-} from '../goalsSlice';
+} from '../../features/goalsSlice';
 
 function Goal() {
-  const goals = useSelector((state) => state.goals.goals);
+  
   const dispatch = useDispatch();
+  const goals = useSelector((state) => state.goals.goals);
   const goalForm = useSelector((state) => state.goals.goalForm);
   const showInputs = useSelector((state) => state.goals.showInputs);
   const editingGoal = useSelector((state) => state.goals.editingGoal);
@@ -27,36 +29,37 @@ function Goal() {
     dispatch(fetchGoals());
   }, [dispatch]);
 
-  const handleSubmit = (e) => {
+  const handleUpdateSubmit = (e) => {
     e.preventDefault();
-    if (editingGoal) {
-      dispatch(updateGoalWithServer(goalForm));
-    } else {
-      dispatch(createGoalWithServer(goalForm));
-    }
+    dispatch(updateGoalWithServer(goalForm));
+    dispatch(setEditingGoal(null));
     dispatch(setGoalForm({
       description: '',
       date: '',
       tasks: '',
       completed: false
     }));
-    dispatch(setEditingGoal(null));
-    dispatch(setShowInputs(false));
+    dispatch(fetchGoals());
+  };
+  
+  const handleCreateSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createGoalWithServer(goalForm));
+    dispatch(setGoalForm({
+      description: '',
+      date: '',
+      tasks: '',
+      completed: false
+    }));
     dispatch(fetchGoals());
   };
   
 
   const handleUpdateGoal = (id, goal) => {
-    dispatch(
-      setGoalForm({
-        ...goal,
-        description: goalForm.description,
-        date: goalForm.date,
-        tasks: goalForm.tasks,
-        completed: !goal.completed,
-      })
-    );
-    dispatch(updateGoalWithServer({ id, ...goalForm }));
+    dispatch(updateGoalWithServer({
+      id,
+      completed: !goal.completed
+    }));
   };
 
   const handleDeleteGoal = (id) => {
@@ -64,13 +67,22 @@ function Goal() {
   };
 
   const handleGoalFormChange = (e) => {
-    dispatch(
-      setGoalForm({
-        ...goalForm,
-        [e.target.name]:
-          e.target.type === 'checkbox' ? e.target.checked : e.target.value,
-      })
-    );
+    if (editingGoal) {
+      dispatch(
+        setGoalForm({
+          ...goalForm,
+          [e.target.name]:
+            e.target.type === 'checkbox' ? e.target.checked : e.target.value,
+        })
+      );
+    } else {
+      dispatch(
+        setGoalForm({
+          ...goalForm,
+          [e.target.name]: e.target.value,
+        })
+      );
+    }
   };
 
   return (
@@ -101,7 +113,7 @@ function Goal() {
                   <button
                   onClick={() => {
                   dispatch(updateGoalWithServer({ id: goal.id, ...goalForm }));
-                  setShowInputs(false);
+                  setShowInputs(true);
                   }}
                   >
                   Save
@@ -112,24 +124,7 @@ function Goal() {
                   </li>
                   ))}
                   </ul>
-                  <form onSubmit={handleSubmit}>
-                  <label>Description:</label>
-                  <input
-                         type="text"
-                         name="description"
-                         value={goalForm.description}
-                         onChange={handleGoalFormChange}
-                       />
-                  <br />
-                  <label>Date:</label>
-                  <input type="date" name="date" value={goalForm.date} onChange={handleGoalFormChange} />
-                  <br />
-                  <label>Tasks:</label>
-                  <input type="text" name="tasks" value={goalForm.tasks} onChange={handleGoalFormChange} />
-                  <br />
-                  <br />
-                  <button type="submit">Create</button>
-                  </form>
+                <GoalForm />
                   </>
                   );
                   };

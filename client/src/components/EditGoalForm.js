@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateGoalWithServer } from '../goalsSlice';
+import { updateGoalWithServer } from '../features/goalsSlice';
 
 
 function EditGoalForm({ goal, handleGoalFormChange, handleSubmit }) {

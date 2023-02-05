@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
 import Task from './Task'
-import Goal from './Goal'
+import Goal from './Goal/Goal'
 import Event from './Event'
 
 const Home = ({ user }) => {

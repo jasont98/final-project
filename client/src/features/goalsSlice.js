@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { v4 as uuid } from "uuid";
 
 export const fetchGoals = createAsyncThunk('goals/fetchGoals', async () => {
   const response = await axios.get('/goals');
@@ -43,18 +44,15 @@ const goalsSlice = createSlice({
       tasks: '',
       completed: false
     },
-    // goalForm2: {
-    //   description: '',
-    //   date: '',
-    //   tasks: '',
-    //   completed: false
-    // },
     showInputs: false,
     editingGoal: null
   },
   reducers: {
     createGoal(state, action) {
-      state.goals.push(action.payload);
+      state.goals.push({
+        id: uuid(), // use the uuid function to generate a unique id
+        text: action.payload,
+      });
     },
     updateGoal(state, action) {
       const { id, goalForm } = action.payload;
@@ -67,9 +65,6 @@ const goalsSlice = createSlice({
     setGoalForm(state, action) {
       state.goalForm = action.payload;
     },
-    // setGoalForm2(state, action) {
-    //   state.goalForm2 = action.payload;
-    // },
     setShowInputs(state, action) {
       state.showInputs = action.payload;
     },

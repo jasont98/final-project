@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import goalsReducer from './goalsSlice';
+import goalsReducer from './features/goalsSlice';
 
 const store = configureStore({
   reducer: {
