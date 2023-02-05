@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { updateGoalWithServer } from '../goalsSlice';
+import React from 'react'
 
-
-function EditGoalForm({ goal, handleGoalFormChange, handleSubmit }) {
+function CreateGoalForm({ goal, handleGoalFormChange, handleSubmit }) {
     return (
       <form onSubmit={handleSubmit}>
         <label>Description:</label>
@@ -31,9 +28,9 @@ function EditGoalForm({ goal, handleGoalFormChange, handleSubmit }) {
         />
         <br />
         <br />
-        <button type="submit">Save</button>
+        <button type="submit">Create</button>
       </form>
     );
   }
 
-export default EditGoalForm;
+export default CreateGoalForm

@@ -1,32 +1,3 @@
-// import { createSlice } from '@reduxjs/toolkit';
-
-// const goalsSlice = createSlice({
-//   name: 'goals',
-//   initialState: [],
-//   reducers: {
-//     createGoal: (state, action) => {
-//       state.push(action.payload);
-//     },
-//     updateGoal: (state, action) => {
-//       const { id, updatedGoal } = action.payload;
-//       const index = state.findIndex(goal => goal.id === id);
-//       if (index >= 0) {
-//         state[index] = { ...state[index], ...updatedGoal };
-//       }
-//     },
-//     deleteGoal: (state, action) => {
-//       const index = state.findIndex(goal => goal.id === action.payload);
-//       if (index >= 0) {
-//         state.splice(index, 1);
-//       }
-//     }
-//   }
-// });
-
-// export const { createGoal, updateGoal, deleteGoal } = goalsSlice.actions;
-
-// export default goalsSlice.reducer;
-
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -72,6 +43,12 @@ const goalsSlice = createSlice({
       tasks: '',
       completed: false
     },
+    // goalForm2: {
+    //   description: '',
+    //   date: '',
+    //   tasks: '',
+    //   completed: false
+    // },
     showInputs: false,
     editingGoal: null
   },
@@ -90,6 +67,9 @@ const goalsSlice = createSlice({
     setGoalForm(state, action) {
       state.goalForm = action.payload;
     },
+    // setGoalForm2(state, action) {
+    //   state.goalForm2 = action.payload;
+    // },
     setShowInputs(state, action) {
       state.showInputs = action.payload;
     },
@@ -117,6 +97,7 @@ const goalsSlice = createSlice({
       updateGoal,
       deleteGoal,
       setGoalForm,
+      setGoalForm2,
       setShowInputs,
       setEditingGoal
       } = goalsSlice.actions;
