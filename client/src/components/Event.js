@@ -39,6 +39,7 @@ const Event = () => {
 };
 
 const handleCreateEvent = async (event) => {
+  // console.log(event.target.value)
     event.preventDefault();
     const eventData = {
       title: event.target.elements.title.value,

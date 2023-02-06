@@ -1,30 +1,42 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import {useState, useEffect} from 'react'
-import Task from './Task'
+import Task from './Task/Task'
 import Goal from './Goal/Goal'
 import Event from './Event'
+// import { fetchEvents } from './eventsSlice';
+import { fetchGoals } from '../features/goalsSlice';
+import { fetchTasks } from '../features/tasksSlice'
+import { setMessage } from '../features/messagesSlice'
 
 const Home = ({ user }) => {
     const [events, setEvents] = useState([]);
-    const [goals, setGoals] = useState([]);
-    const [tasks, setTasks] = useState([]);
-    const [message, setMessage] = useState('Your plans for today');
-  
+    const goals = useSelector(state => state.goals.goals);
+    const tasks = useSelector(state => state.tasks.tasks);
+    const message = useSelector(state => state.messages.message);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+      // dispatch(fetchEvents());
+      dispatch(fetchGoals());
+      dispatch(fetchTasks());
+    }, [dispatch]);
+
     useEffect(() => {
       Promise.all([
         fetch('/events').then(r => r.json()).then(data => setEvents(data)),
-        fetch('/goals').then(r => r.json()).then(data => setGoals(data)),
-        fetch('/tasks').then(r => r.json()).then(data => setTasks(data)),
+        // fetch('/goals').then(r => r.json()).then(data => setGoals(data)),
+        // fetch('/tasks').then(r => r.json()).then(data => setTasks(data)),
       ]);
     }, []);
   
     useEffect(() => {
       if (tasks.length === 0 && goals.length === 0 && events.length === 0) {
-        setMessage('You have nothing planned today');
+        dispatch(setMessage('You have nothing planned today'));
       } else {
-        setMessage('Your plans for today');
+        dispatch(setMessage('Your plans for today'));
       }
-    }, [tasks, goals, events]);
+    }, [tasks, goals, events, dispatch]);
   
     return (
       <div>

@@ -19,12 +19,14 @@ export const createGoalWithServer = createAsyncThunk(
 export const updateGoalWithServer = createAsyncThunk(
   'goals/updateGoalWithServer',
   async (goal, { dispatch }) => {
+    console.log(`Updating goal with ID: ${goal.id}`);
     const response = await axios.patch(`/goals/${goal.id}`, goal);
     dispatch(updateGoal({ id: goal.id, updatedGoal: response.data }));
     dispatch(fetchGoals());
     return response.data;
   }
-);
+)
+
 
 export const deleteGoalWithServer = createAsyncThunk(
   'goals/deleteGoalWithServer',
@@ -38,7 +40,13 @@ const goalsSlice = createSlice({
   name: 'goals',
   initialState: {
     goals: [],
-    goalForm: {
+    createGoalForm: {
+      description: '',
+      date: '',
+      tasks: '',
+      completed: false
+    },
+    editGoalForm: {
       description: '',
       date: '',
       tasks: '',
@@ -55,15 +63,18 @@ const goalsSlice = createSlice({
       });
     },
     updateGoal(state, action) {
-      const { id, goalForm } = action.payload;
+      const { id, updatedGoal } = action.payload;
       const goalIndex = state.goals.findIndex(goal => goal.id === id);
-      state.goals[goalIndex] = { ...state.goals[goalIndex], ...goalForm };
+      state.goals[goalIndex] = { ...state.goals[goalIndex], ...updatedGoal };
     },
     deleteGoal(state, action) {
       state.goals = state.goals.filter(goal => goal.id !== action.payload);
     },
-    setGoalForm(state, action) {
-      state.goalForm = action.payload;
+    setCreateGoalForm(state, action) {
+      state.createGoalForm = action.payload;
+    },
+    setEditGoalForm(state, action) {
+      state.editGoalForm = action.payload;
     },
     setShowInputs(state, action) {
       state.showInputs = action.payload;
@@ -80,9 +91,9 @@ const goalsSlice = createSlice({
       state.goals.push(action.payload);
     },
     [updateGoalWithServer.fulfilled]: (state, action) => {
-      const { id, goalForm } = action.payload;
+      const { id, updatedGoal } = action.payload;
       const goalIndex = state.goals.findIndex(goal => goal.id === id);
-      state.goals[goalIndex] = { ...state.goals[goalIndex], ...goalForm };
+      state.goals[goalIndex] = { ...state.goals[goalIndex], ...updatedGoal };
       }
       }
       });
@@ -91,8 +102,8 @@ const goalsSlice = createSlice({
       createGoal,
       updateGoal,
       deleteGoal,
-      setGoalForm,
-      setGoalForm2,
+      setEditGoalForm,
+      setCreateGoalForm,
       setShowInputs,
       setEditingGoal
       } = goalsSlice.actions;
