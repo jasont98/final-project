@@ -27,7 +27,6 @@ export const updateGoalWithServer = createAsyncThunk(
   }
 )
 
-
 export const deleteGoalWithServer = createAsyncThunk(
   'goals/deleteGoalWithServer',
   async (id, { dispatch }) => {

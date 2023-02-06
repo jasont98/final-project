@@ -7,7 +7,7 @@ import NavBar from './NavBar';
 import Calendar from "./Calendar";
 import Task from "./Task/Task";
 import Goal from "./Goal/Goal";
-import Event from "./Event"
+import Event from "./Event/Event"
 import Profile from "./Profile";
 
 const App = () => {

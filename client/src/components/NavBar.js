@@ -10,6 +10,9 @@ const NavBar = () => {
         <NavLink to="/calendar">
             Calendar
         </NavLink>
+        <NavLink to="/profile">
+            Profile
+        </NavLink>
         <NavLink to="/login">
             Logout
         </NavLink>

@@ -53,7 +53,6 @@ function CreateGoalForm() {
         onChange={handleGoalFormChange}
       />
       <br />
-      <br />
       <button type="submit">Create</button>
     </form>
   );

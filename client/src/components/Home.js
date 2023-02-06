@@ -3,32 +3,26 @@ import { useSelector, useDispatch } from 'react-redux';
 import {useState, useEffect} from 'react'
 import Task from './Task/Task'
 import Goal from './Goal/Goal'
-import Event from './Event'
-// import { fetchEvents } from './eventsSlice';
+import Event from './Event/Event'
+import { fetchEvents } from '../features/eventsSlice';
 import { fetchGoals } from '../features/goalsSlice';
 import { fetchTasks } from '../features/tasksSlice'
 import { setMessage } from '../features/messagesSlice'
 
 const Home = ({ user }) => {
-    const [events, setEvents] = useState([]);
+    const events = useSelector(state => state.events.events)
     const goals = useSelector(state => state.goals.goals);
     const tasks = useSelector(state => state.tasks.tasks);
     const message = useSelector(state => state.messages.message);
     const dispatch = useDispatch();
 
     useEffect(() => {
-      // dispatch(fetchEvents());
+      dispatch(fetchEvents());
       dispatch(fetchGoals());
       dispatch(fetchTasks());
     }, [dispatch]);
 
-    useEffect(() => {
-      Promise.all([
-        fetch('/events').then(r => r.json()).then(data => setEvents(data)),
-        // fetch('/goals').then(r => r.json()).then(data => setGoals(data)),
-        // fetch('/tasks').then(r => r.json()).then(data => setTasks(data)),
-      ]);
-    }, []);
+   
   
     useEffect(() => {
       if (tasks.length === 0 && goals.length === 0 && events.length === 0) {

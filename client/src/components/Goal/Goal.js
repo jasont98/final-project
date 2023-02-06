@@ -8,13 +8,11 @@ import { updateGoalWithServer, fetchGoals, } from '../../features/goalsSlice';
 function Goal() {
   
   const dispatch = useDispatch();
-
   const goals = useSelector((state) => state.goals.goals);
 
   useEffect(() => {
     dispatch(fetchGoals());
   }, [dispatch]);
-
 
   const handleUpdateGoal = (id, goal) => {
     dispatch(updateGoalWithServer({
