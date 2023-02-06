@@ -1,4 +1,3 @@
-
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { v4 as uuid } from "uuid";
@@ -12,7 +11,6 @@ export const createTaskWithServer = createAsyncThunk(
   'tasks/createTaskWithServer',
   async (task, { dispatch }) => {
     const response = await axios.post('/tasks', task);
-    // dispatch(createGoal(response.data));
     return response.data;
   }
 );
@@ -27,7 +25,6 @@ export const updateTaskWithServer = createAsyncThunk(
     return response.data;
   }
 )
-
 
 export const deleteTaskWithServer = createAsyncThunk(
   'tasks/deleteTaskWithServer',

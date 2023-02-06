@@ -45,8 +45,6 @@ function CreateTaskForm() {
         onChange={handleTaskFormChange}
       />
       <br />
-      <br />
-      <br />
       <button type="submit">Create</button>
     </form>
   );
