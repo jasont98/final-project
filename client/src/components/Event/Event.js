@@ -5,7 +5,7 @@ import EditEventForm from './EditEventForm';
 import DeleteEvent from './DeleteEvent';
 import { updateEventWithServer, fetchEvents, } from '../../features/eventsSlice';
 
-function Event() {
+function Event({goals, tasks}) {
   
   const dispatch = useDispatch();
 
@@ -28,13 +28,8 @@ function Event() {
       <ul>
         {events.map((event) => (
           <li key={event.id}>
-            {event.description}
+            {event.title}
             <ul>Date: {event.date}</ul>
-            {/* <ul>
-        {event.tasks.map((task, index) => (
-          <li key={index}>{task}</li>
-        ))}
-      </ul> */}
             <button onClick={() => handleUpdateEvent(event.id, event)}>
               {event.completed ? 'Incomplete' : 'Complete'}
             </button>

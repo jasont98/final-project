@@ -27,7 +27,6 @@ export const updateEventWithServer = createAsyncThunk(
   }
 )
 
-
 export const deleteEventWithServer = createAsyncThunk(
   'events/deleteEventWithServer',
   async (id, { dispatch }) => {
@@ -35,6 +34,7 @@ export const deleteEventWithServer = createAsyncThunk(
     dispatch(deleteEvent(id));
   }
 );
+
 
 const eventsSlice = createSlice({
   name: 'events',

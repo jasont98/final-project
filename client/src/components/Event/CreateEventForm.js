@@ -13,12 +13,14 @@ function CreateEventForm() {
   }
 
   const handleCreateSubmit = async (event) => {
-    // console.log(event.value)
+    // console.log("submitted")
     event.preventDefault();
     const eventData = {
       id: uuidv4(),
       title: event.target.elements.title.value,
-      date: event.target.elements.date.value
+      date: event.target.elements.date.value,
+      goals: event.target.elements.goals.value,
+      tasks: event.target.elements.tasks.value,
     };
     try {
       dispatch(createEventWithServer(eventData));
