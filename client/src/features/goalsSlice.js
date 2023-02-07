@@ -16,6 +16,20 @@ export const createGoalWithServer = createAsyncThunk(
   }
 );
 
+export const createTaskWithServer = createAsyncThunk(
+  'goals/createTaskWithServer',
+  async (task, { dispatch, getState }) => {
+    const goalId = task.goal_id || getState().goals.editingGoal;
+
+    if (!goalId) {
+      throw new Error('Goal ID is required to create a task.');
+    }
+
+    const response = await axios.post(`/goals/${goalId}/tasks`, task);
+    return response.data;
+  }
+);
+
 export const updateGoalWithServer = createAsyncThunk(
   'goals/updateGoalWithServer',
   async (goal, { dispatch }) => {
@@ -42,18 +56,27 @@ const goalsSlice = createSlice({
     createGoalForm: {
       description: '',
       date: '',
-      tasks: '',
       completed: false
     },
     editGoalForm: {
       description: '',
       date: '',
-      tasks: '',
+      completed: false
+    },
+    createGoalTaskForm: {
+      description: '',
+      completed: false
+    },
+    editGoalTaskForm: {
+      description: '',
       completed: false
     },
     showInputs: false,
-    editingGoal: null
+    editingGoal: null,
+    showGoalTaskInputs: false,
+    editingGoalTask: null
   },
+  
   reducers: {
     createGoal(state, action) {
       state.goals.push({
@@ -80,6 +103,12 @@ const goalsSlice = createSlice({
     },
     setEditingGoal(state, action) {
       state.editingGoal = action.payload;
+    },
+    setShowGoalTaskInputs(state, action) {
+      state.showGoalTaskInputs = action.payload;
+    },
+    setEditingGoalTask(state, action) {
+      state.editingGoalTask = action.payload;
     }
   },
   extraReducers: {
@@ -104,7 +133,11 @@ const goalsSlice = createSlice({
       setEditGoalForm,
       setCreateGoalForm,
       setShowInputs,
-      setEditingGoal
+      setEditingGoal,
+      setShowGoalTaskInputs,
+      setEditingGoalTaskInputs,
+      createGoalTaskForm,
+      editGoalTaskForm,
       } = goalsSlice.actions;
       
       export default goalsSlice.reducer;

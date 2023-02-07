@@ -39,11 +39,13 @@ const tasksSlice = createSlice({
   initialState: {
     tasks: [],
     createTaskForm: {
+      goal_id: "" ,
       description: '',
       date: '',
       completed: false
     },
     editTaskForm: {
+      goal_id: "" ,
       description: '',
       date: '',
       completed: false
@@ -58,6 +60,7 @@ const tasksSlice = createSlice({
         text: action.payload,
       });
     },
+    
     updateTask(state, action) {
       const { id, updatedTask } = action.payload;
       const taskIndex = state.tasks.findIndex(task => task.id === id);

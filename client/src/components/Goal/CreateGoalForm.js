@@ -45,14 +45,6 @@ function CreateGoalForm() {
         onChange={handleGoalFormChange}
       />
       <br />
-      <label>Tasks:</label>
-      <input
-        type="text"
-        name="tasks"
-        value={createGoalForm.tasks}
-        onChange={handleGoalFormChange}
-      />
-      <br />
       <button type="submit">Create</button>
     </form>
   );

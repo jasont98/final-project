@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createTaskWithServer, setCreateTaskForm } from '../../features/tasksSlice';
 import { v4 as uuidv4 } from 'uuid';
 
-function CreateTaskForm() {
+function CreateTaskForm({goal_id}) {
   
   const dispatch = useDispatch();
   const createTaskForm = useSelector((state) => state.tasks.createTaskForm);
@@ -16,6 +16,7 @@ function CreateTaskForm() {
     // console.log(event.value)
     event.preventDefault();
     const taskData = {
+      goal_id,
       id: uuidv4(),
       description: event.target.elements.description.value,
       date: event.target.elements.date.value

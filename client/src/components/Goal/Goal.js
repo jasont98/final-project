@@ -4,14 +4,17 @@ import CreateGoalForm from './CreateGoalForm';
 import EditGoalForm from './EditGoalForm';
 import DeleteGoal from './DeleteGoal';
 import { updateGoalWithServer, fetchGoals, } from '../../features/goalsSlice';
+import AddTaskToGoal from './AddTaskToGoal';
+import {fetchTasks} from '../../features/tasksSlice';
 
 function Goal() {
-  
   const dispatch = useDispatch();
   const goals = useSelector((state) => state.goals.goals);
+  const tasks = useSelector((state) => state.tasks.tasks);
 
   useEffect(() => {
     dispatch(fetchGoals());
+    dispatch(fetchTasks());
   }, [dispatch]);
 
   const handleUpdateGoal = (id, goal) => {
@@ -20,7 +23,7 @@ function Goal() {
       completed: !goal.completed
     }));
   };
-
+  console.log(tasks.description);
   return (
     <>
       <ul>
@@ -28,23 +31,23 @@ function Goal() {
           <li key={goal.id}>
             {goal.description}
             <ul>Date: {goal.date}</ul>
-            <ul>
-        {goal.tasks.map((task, index) => (
-          <li key={index}>{task}</li>
-        ))}
-      </ul>
+            <ul>Tasks:
+              {tasks.filter(task => task.goal_id === goal.id).map(task => (
+                  <li key={task.id}> Tasks:{task.description}</li>
+                ))}
+            </ul>
             <button onClick={() => handleUpdateGoal(goal.id, goal)}>
               {goal.completed ? 'Incomplete' : 'Complete'}
             </button>
-              <EditGoalForm goal={goal}/>
-                 <DeleteGoal id={goal.id}/>
-                  </li>
-                  ))}
-                  </ul>
-                    <CreateGoalForm />
-                </>
-              );
-            };
+            <AddTaskToGoal goal_id={goal.id} />
+            <EditGoalForm goal={goal} />
+            <DeleteGoal id={goal.id} />
+          </li>
+        ))}
+      </ul>
+      <CreateGoalForm />
+    </>
+  );
+}
 
-   export default Goal;
-
+export default Goal;
