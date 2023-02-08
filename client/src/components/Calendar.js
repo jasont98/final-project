@@ -28,7 +28,6 @@ export default function Calendar() {
               trs.push(<tr>{tds}</tr>);
               tds = [];
           }
-        
           tds.push(
               <td key={i} className="pt-6">
                   <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
@@ -38,10 +37,10 @@ export default function Calendar() {
           );
           i++;
       }
-        
       if (tds.length > 0) {
           trs.push(<tr>{tds}</tr>);
       }
+      
     const nextMonth = () => {
       setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate()));
     };
