@@ -39,49 +39,50 @@ function RegistrationForm({setUser}) {
   }
 })
 }
-  return (
-    <>
-    {message && <p>{message}</p>}
-    <h2>Sign Up!</h2>
-    <form onSubmit={createAccount}>
-        <label htmlFor="name"></label>
-        <input
+return (
+  <>
+    {message && <p className="text-red-500">{message}</p>}
+    <h2 className="text-2xl font-bold mb-4">Sign Up!</h2>
+    <form className="py-4 px-10 mx-auto bg-white rounded-lg shadow-md" onSubmit={createAccount}>
+      <label className="block mb-2 font-medium" htmlFor="name"></label>
+      <input
+        className="block w-full p-2 rounded-lg"
         id="name"
         value={name}
         onChange={ e => setUsername(e.target.value)}
         placeholder="Name"/>
-        <br />
-         <label htmlFor="email"></label>
-        <input
+      <label className="block mt-4 mb-2 font-medium" htmlFor="email"></label>
+      <input
+        className="block w-full p-2 mt-2 rounded-lg"
         id="email"
         value={email}
         onChange={ e => setEmail(e.target.value)}
         placeholder="Email"/>
-        <br />
-        <label htmlFor="password"></label>
-        <input
+      <label className="block mt-4 mb-2 font-medium" htmlFor="password"></label>
+      <input
+        className="block w-full p-2 mt-2 rounded-lg"
         type="password"
         id="password"
         value ={password}
         onChange={ (e) => setPassword(e.target.value)}
         placeholder="Password"
-         />
-         <br />
-        <label htmlFor="confirm-password"></label>
-        <input
+      />
+      <label className="block mt-4 mb-2 font-medium" htmlFor="confirm-password"></label>
+      <input
+        className="block w-full p-2 mt-2 rounded-lg"
         type="password"
         id="confirm-password"
         value={confirmPassword}
         onChange={(event) => setConfirmPassword(event.target.value)}
         placeholder="Confirm Password"
-          />
-          <br />
-          <div className="button-container">
-        <input className="inputCreate"type= "submit" value="Create Profile"  />
-        </div>
+      />
+      <div className="mt-6 text-center">
+        <input className="bg-indigo-500 text-white p-3 rounded-lg hover:bg-indigo-600" type= "submit" value="Create Profile"  />
+      </div>
     </form>
-    </>
-  )
+  </>
+)
+
 }
 
 export default RegistrationForm

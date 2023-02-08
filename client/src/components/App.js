@@ -28,8 +28,9 @@ const App = () => {
     }, [])
 
   return (
-    <div>
-      <NavBar />
+    <div className="flex h-full">
+    <NavBar />
+    <div className="container mx-auto flex-1">
       <Routes>
        <Route path="/login" element={<SigninPage user={user} setUser={setUser}/>} />
        <Route path="/home" element={<Home user={user}/>} />
@@ -38,8 +39,9 @@ const App = () => {
        <Route path="/tasks" element={<Task user={user}/>} />
        <Route path="/goals" element={<Goal/>} />
        <Route path="/events" element={<Event/>} />
-       <Route path="/profile" element={<Profile/>} />
+       <Route path="/profile" element={<Profile user={user}/>} />
        </Routes>
+       </div>
    </div>
   )
 }

@@ -8,6 +8,7 @@ import { fetchEvents } from '../features/eventsSlice';
 import { fetchGoals } from '../features/goalsSlice';
 import { fetchTasks } from '../features/tasksSlice'
 import { setMessage } from '../features/messagesSlice'
+// import '../styles/Home.css'
 
 const Home = ({ user }) => {
     const events = useSelector(state => state.events.events)
@@ -32,6 +33,7 @@ const Home = ({ user }) => {
   
     return (
       <>
+      {/* <div className='outer-container'> */}
       <div>Hello {user.name}!</div>
       <div>{message}</div>
           <div className="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 pt-6 gap-8">
@@ -83,6 +85,7 @@ const Home = ({ user }) => {
                   </div>
               </div>
           </div>
+          {/* </div> */}
         </>
       );
 }
