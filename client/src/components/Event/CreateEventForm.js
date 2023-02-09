@@ -8,7 +8,7 @@ function CreateEventForm() {
   const createEventForm = useSelector((state) => state.events.createEventForm);
 
   const handleEventFormChange = (event) => {
-    const { name, value } = event.target.value;
+    const { name, value } = event.target;
     dispatch(setCreateEventForm({ [name]: value }));
   }
 

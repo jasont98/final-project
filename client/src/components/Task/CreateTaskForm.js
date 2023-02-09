@@ -16,7 +16,6 @@ function CreateTaskForm({goal_id}) {
     // console.log(event.value)
     event.preventDefault();
     const taskData = {
-      goal_id,
       id: uuidv4(),
       description: event.target.elements.description.value,
       date: event.target.elements.date.value

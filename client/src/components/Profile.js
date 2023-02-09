@@ -97,17 +97,19 @@ const Profile = ({user}) => {
           </li>
           <li className="text-lg font-bold">Tasks:
             <ul className="list-disc pl-5">
-              {tasks.filter(task => !task.belongsToGoal).map(task => (
-                <li key={task.id}>
+            {tasks
+                .filter(task => new Date(task.date).toLocaleDateString() === formattedDate)
+                .map(task => (
+                  <li key={task.id}>
                   <input
                     type="checkbox"
                     checked={task.completed}
-                    onChange={() => handleUpdateTask(task.id, task)}
-                  />
+                    onChange={() => handleUpdateGoal(task.id, task)}
+                  />  
                   {task.description}
                   <EditTaskForm task={task}/>
                 </li>
-              ))}
+                ))}
             </ul>
           </li>
         </ul>

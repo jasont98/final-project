@@ -1,13 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+
 import '../styles/tailwind.css'
+
+import { fetchEvents, updateEventWithServer, updateEventCompletionWithServer, deleteEventWithServer } from '../features/eventsSlice';
+import { fetchGoals, updateGoalWithServer, deleteGoalWithServer, updateGoalCompletionWithServer } from '../features/goalsSlice';
+import { fetchTasks, updateTaskWithServer, deleteTaskWithServer, updateTaskCompletionWithServer } from '../features/tasksSlice'
+import EditEventForm from './Event/EditEventForm';
 
 export default function Calendar() {
 
     const [currentDate, setCurrentDate] = useState(new Date());
     const [today, setToday] = useState(new Date().getDate());
 
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    
+    const events = useSelector(state => state.events.events)
+    const goals = useSelector(state => state.goals.goals);
+    const tasks = useSelector(state => state.tasks.tasks);
+    const dispatch = useDispatch();
+
     const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
     const firstDayOfWeek = firstDay.getDay();
+
+    useEffect(() => {
+        dispatch(fetchEvents());
+        dispatch(fetchGoals());
+        dispatch(fetchTasks());
+      }, [dispatch]);
     
     const daysInMonth = () => {
         return new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
@@ -29,7 +49,7 @@ export default function Calendar() {
         }
     
         tds.push(
-            <td key={i} className="pt-6">
+            <td key={i} className="pt-6" onClick={() => {}}>
             <div
                 className={`px-4 py-4 cursor-pointer flex w-full justify-center ${
                   i === today && currentDate.getMonth() === new Date().getMonth() ? 'bg-indigo-700 text-white' : 'text-gray-500 dark:text-gray-100'
@@ -129,23 +149,34 @@ export default function Calendar() {
                         </div>
                     </div>
                     <div className="md:py-8 py-5 md:px-16 px-5 dark:bg-gray-700 bg-gray-50 rounded-b" style={{ width: '110%' }}>
-                        <div className="px-4">
-                            <div className="border-b pb-4 border-gray-400 border-dashed">
-                                <p className="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">Events</p>
-                                <p className="text-lg font-medium leading-5 text-gray-800 dark:text-gray-100 pt-2">Zoom call with design team</p>
-                                <p className="text-sm pt-2 leading-4 leading-none text-gray-600 dark:text-gray-300">Discussion on UX sprint and Wireframe review</p>
-                            </div>
-                            <div className="border-b pb-4 border-gray-400 border-dashed pt-5">
-                                <p className="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">Goals</p>
-                                <p className="text-lg font-medium leading-5 text-gray-800 dark:text-gray-100 pt-2">Orientation session with new hires</p>
-                            </div>
-                            <div className="border-b pb-4 border-gray-400 border-dashed pt-5">
-                                <p className="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">Tasks</p>
-                                <p className="text-lg font-medium leading-5 text-gray-800 dark:text-gray-100 pt-2">Zoom call with design team</p>
-                                <p className="text-sm pt-2 leading-4 leading-none text-gray-600 dark:text-gray-300">Discussion on UX sprint and Wireframe review</p>
-                            </div>
-                        </div>
-                    </div>
+      <div className="px-4">
+        <div className="border-b pb-4 border-gray-400 border-dashed">
+          <p className="text-lg font-medium leading-5 text-gray-800 dark:text-gray-100 pt-2">Events</p>
+          {events.map((event, index) => (
+            <div key={index}>
+              <p className="text-sm pt-2 leading-4 leading-none text-gray-600 dark:text-gray-300">{event.title}</p>
+              {/* <p className="text-sm pt-2 leading-4 leading-none text-gray-600 dark:text-gray-300">{event.description}</p> */}
+            </div>
+          ))}
+        </div>
+        <div className="border-b pb-4 border-gray-400 border-dashed pt-5">
+          <p className="text-lg font-medium leading-5 text-gray-800 dark:text-gray-100 pt-2">Goals</p>
+          {goals.map((goal, index) => (
+            <div key={index}>
+              <p className="text-sm pt-2 leading-4 leading-none text-gray-600 dark:text-gray-300">{goal.description}</p>
+            </div>
+          ))}
+        </div>
+        <div className="border-b pb-4 border-gray-400 border-dashed pt-5">
+          <p className="text-lg font-medium leading-5 text-gray-800 dark:text-gray-100 pt-2">Tasks</p>
+          {tasks.map((task, index) => (
+            <div key={index}>
+              <p className="text-sm pt-2 leading-4 leading-none text-gray-600 dark:text-gray-300">{task.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
                 </div>
             </div>
         </>
