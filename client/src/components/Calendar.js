@@ -15,6 +15,7 @@ export default function Calendar() {
         return new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
       };
 
+     
       let i = 1;
       const trs = [];
         
@@ -23,7 +24,7 @@ export default function Calendar() {
           tds.push(<td />);
       }
         
-      while (i < daysInMonth()) {
+      while (i <= daysInMonth()) {
           if (tds.length === 7) {
               trs.push(<tr>{tds}</tr>);
               tds = [];
