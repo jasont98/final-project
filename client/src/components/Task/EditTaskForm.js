@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setShowInputs,setEditTaskForm, updateTaskWithServer,  setEditingTask } from '../../features/tasksSlice';
 
-
 function EditTaskForm({ task }) {
   
   const dispatch = useDispatch();
@@ -37,8 +36,8 @@ function EditTaskForm({ task }) {
   return (
     <div>
       <button onClick={() => handleEditClick(task)}>Edit</button>
-            {showInputs && editingTask.id === task.id && (
-              <>
+        {showInputs && editingTask.id === task.id && (
+          <>
     <form onSubmit={handleEditSubmit}>
       <label>Description:</label>
       <input

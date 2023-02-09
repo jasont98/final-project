@@ -15,11 +15,11 @@ export default function Calendar() {
         return new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
       };
 
-      let i = 0;
+      let i = 1;
       const trs = [];
         
       let tds = [];
-      for (let j = 0; j < firstDayOfWeek; j++) {
+      for (let j = 1; j < firstDayOfWeek; j++) {
           tds.push(<td />);
       }
         
@@ -31,7 +31,7 @@ export default function Calendar() {
           tds.push(
               <td key={i} className="pt-6">
                   <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
-                      <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">{i + 1}</p>
+                      <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">{i}</p>
                   </div>
               </td>
           );
@@ -49,8 +49,6 @@ export default function Calendar() {
       setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, currentDate.getDate()));
       console.log(prevMonth());
     };
-
-
 
     return (
         <>

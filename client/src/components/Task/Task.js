@@ -10,23 +10,19 @@ import { updateTaskWithServer, deleteTaskWithServer, fetchTasks } from '../../fe
 const Task = () => {
   const dispatch = useDispatch();
 
-  const tasks = useSelector((state) => state.tasks.tasks);
+  // const tasks = useSelector((state) => state.tasks.tasks);
 
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);
 
 
-  const handleUpdateTask = (id, task) => {
-  dispatch(updateTaskWithServer({
-    id,
-    completed: !task.completed
-  }));
-
-  // if (task.completed) {
-  //   dispatch(deleteTaskWithServer(id));
-  // }
-};
+//   const handleUpdateTask = (id, task) => {
+//   dispatch(updateTaskWithServer({
+//     id,
+//     completed: !task.completed
+//   }));
+// };
   
 
   return (

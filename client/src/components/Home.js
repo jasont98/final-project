@@ -8,6 +8,7 @@ import { fetchEvents } from '../features/eventsSlice';
 import { fetchGoals } from '../features/goalsSlice';
 import { fetchTasks } from '../features/tasksSlice'
 import { setMessage } from '../features/messagesSlice'
+import { format, isSameDay } from 'date-fns';
 // import '../styles/Home.css'
 
 const Home = ({ user }) => {
@@ -18,18 +19,19 @@ const Home = ({ user }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-      dispatch(fetchEvents());
-      dispatch(fetchGoals());
-      dispatch(fetchTasks());
-    }, [dispatch]);
-
-    useEffect(() => {
-      if (tasks.length === 0 && goals.length === 0 && events.length === 0) {
-        dispatch(setMessage('You have nothing planned today'));
-      } else {
-        dispatch(setMessage('Your plans for today'));
-      }
-    }, [tasks, goals, events, dispatch]);
+        const currentDate = new Date();
+        const formattedToday = currentDate.toLocaleDateString();
+        const hasPlans = events.some(event => {
+        const eventDate = new Date(event.date);
+        return eventDate.toLocaleDateString() === formattedToday;
+        });
+        if (!hasPlans && formattedToday && tasks.length === 0 && goals.length === 0 && events.length === 0) {
+            dispatch(setMessage(`You have nothing planned for today`));
+        } else {
+            dispatch(setMessage(`Your plans for ${formattedToday}`));
+        }
+    })
+      
   
     return (
       <>

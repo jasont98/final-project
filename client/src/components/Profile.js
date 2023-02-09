@@ -8,6 +8,7 @@ import EditGoalForm from './Goal/EditGoalForm';
 import EditTaskForm from './Task/EditTaskForm';
 
 
+
 const Profile = ({user}) => {
 
     const currentDate = new Date();
@@ -16,6 +17,7 @@ const Profile = ({user}) => {
     const goals = useSelector(state => state.goals.goals);
     const tasks = useSelector(state => state.tasks.tasks);
     const dispatch = useDispatch();
+    
 
     useEffect(() => {
       dispatch(fetchEvents());
@@ -56,7 +58,7 @@ const Profile = ({user}) => {
     return (
       <div className="p-10">
         <h1 className="text-2xl font-bold">Name: {user.name}</h1>
-        <h1 className="text-2xl font-bold">Birthday: {user.birthday}</h1>
+        <h1 className="text-2xl font-bold"> Birthday: {new Date(user.birthday).toLocaleDateString('en-US', {timeZone: 'UTC'})}</h1>
         <h1 className="text-2xl font-bold">Today is {formattedDate}, You have:</h1>
         <ul className="list-disc pl-5">
           <li className="text-lg font-bold">Events:
