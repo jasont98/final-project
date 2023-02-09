@@ -104,7 +104,7 @@ const Profile = ({user}) => {
                   <input
                     type="checkbox"
                     checked={task.completed}
-                    onChange={() => handleUpdateGoal(task.id, task)}
+                    onChange={() => handleUpdateTask(task.id, task)}
                   />  
                   {task.description}
                   <EditTaskForm task={task}/>
