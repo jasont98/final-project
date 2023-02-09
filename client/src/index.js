@@ -3,13 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './styles/index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router} from "react-router-dom";
+import { Provider } from "react-redux"
+import store from "./store.js"
+import thunkMiddleware from "redux-thunk";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <Router>
+    <Provider store={store}>
     <App />
-  </React.StrictMode>
+    </Provider>
+  </Router>
 );
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

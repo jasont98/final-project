@@ -1,39 +1,50 @@
 class GoalsController < ApplicationController
 
     def index 
-        render json: Goal.all 
+        render json: find_goals
     end
 
     def show 
-        goal = find_goal
-        render json: goal 
+        render json: find_goal
     end
 
     def create 
-        goal = Goal.create!(goal_params)
-        render json: goal, status: :created
+        render json: create_goal, status: :created
     end
 
     def update 
-        goal = find_goal
-        goal.update!(goal_params)
-        render json: goal, status: :accepted
+        render json: update_goal, status: :accepted
     end
 
     def destroy 
-        goal = find_goal
-        goal.destroy
-        head :no_content
+        destroy_goal
     end
 
     private 
 
-    def find_goal
-        Goal.find(params[:id])
+    def goal_params 
+        params.permit(:id, :description, :completed, :date, :user_id, :event_id)
     end
 
-    def goal_params 
-        params.permit(:description, :completed, :date, :user_id, :event_id)
+    def find_goals
+        logged_in_user.goals.all
+    end
+    
+    def find_goal
+        logged_in_user.goals.find(params[:id])
+    end
+
+    def create_goal
+        logged_in_user.goals.create!(goal_params)
+    end
+
+    def update_goal
+        find_goal.update!(goal_params)
+    end
+
+    def destroy_goal
+        find_goal.destroy
+        head :no_content
     end
 
 end

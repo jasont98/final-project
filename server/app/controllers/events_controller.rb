@@ -1,39 +1,50 @@
 class EventsController < ApplicationController
 
     def index 
-        render json: Event.all
+        render json: find_events
     end
 
     def show 
-        event = find_event
-        render json: event
+        render json: find_event
     end
 
     def create 
-        event = Event.create!(event_params)
-        render json: event, status: :created
+        render json: create_event, status: :created
     end
 
     def update 
-        event = find_event
-        event.update!(event_params)
-        render json: event, status: :accepted
+        render json: update_event, status: :accepted
     end
 
     def destroy 
-        event = find_event
-        event.destroy
-        head :no_content
+        destroy_event 
     end
 
     private 
 
     def event_params 
-        params.permit(:title, :completed, :date, :user_id)
+        params.permit(:id, :title, :completed, :date, :user_id)
     end
     
-    def find_event
-        Event.find(params[:id])
+    def find_events
+        logged_in_user.events.all
+    end
+    
+    def find_event 
+        logged_in_user.events.find(params[:id])
+    end
+
+    def create_event
+        logged_in_user.events.create!(event_params)
+    end
+
+    def update_event 
+        find_event.update!(event_params)
+    end
+
+    def destroy_event
+        find_event.destroy
+        head :no_content
     end
 
 end

@@ -1,39 +1,46 @@
 class TasksController < ApplicationController
 
     def index 
-        render json: Task.all 
+        render json: find_tasks
     end
 
     def show 
-        task = find_task 
-        render json: task
+        render json: find_task
     end
 
     def create 
-        task = Task.create!(task_params)
-        render json: task, status: :created
+        render json: create_task, status: :created
     end
 
     def update 
-        task = find_task
-        task.update!(task_params)
-        render json: task, status: :accepted
+        render json: update_task, status: :accepted
     end
 
     def destroy 
-        task = find_task
-        task.destroy
+        find_task.destroy
         head :no_content
     end
 
     private 
 
     def task_params 
-        params.permit(:description, :date, :user_id, :completed)
+        params.permit(:id, :description, :date, :user_id, :completed, :goal_id, :event_id)
+    end
+    
+    def find_tasks
+        logged_in_user.tasks.all
+    end
+    
+    def find_task 
+        logged_in_user.tasks.find(params[:id])
     end
 
-    def find_task 
-        Task.find(params[:id])
+    def create_task 
+        logged_in_user.tasks.create!(task_params)
+    end
+
+    def update_task 
+        find_task.update!(task_params)
     end
 
 end

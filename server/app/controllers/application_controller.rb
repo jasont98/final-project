@@ -17,4 +17,9 @@ class ApplicationController < ActionController::API
     def record_not_found(error)
         render json: {error: "#{error.model} not found"}, status: :not_found
       end
+
+    def logged_in_user
+        User.find(session[:user_id])
+      end
+    
 end

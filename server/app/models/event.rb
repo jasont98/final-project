@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
   belongs_to :user
-  has_many :goals 
-  has_many :tasks, through: :goals
+  has_many :goals, dependent: :destroy 
+  has_many :tasks, through: :goals, dependent: :destroy 
 end
