@@ -32,7 +32,6 @@ const Home = ({ user }) => {
         }
     })
       
-  
     return (
       <>
       {/* <div className='outer-container'> */}
