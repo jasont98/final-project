@@ -8,6 +8,8 @@ import '../styles/tailwind.css'
 export default function Calendar() {
 
     const [currentDate, setCurrentDate] = useState(new Date());
+    const [today, setToday] = useState(new Date().getDate());
+
     const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
     const firstDayOfWeek = firstDay.getDay();
     
@@ -25,18 +27,25 @@ export default function Calendar() {
       }
         
       while (i <= daysInMonth()) {
-          if (tds.length === 7) {
-              trs.push(<tr>{tds}</tr>);
-              tds = [];
-          }
-          tds.push(
-              <td key={i} className="pt-6">
-                  <div className="px-4 py-4 cursor-pointer flex w-full justify-center">
-                      <p className="text-2xl text-gray-500 dark:text-gray-100 font-medium">{i}</p>
-                  </div>
-              </td>
-          );
-          i++;
+        if (tds.length === 7) {
+          trs.push(<tr>{tds}</tr>);
+          tds = [];
+        }
+    
+        tds.push(
+          <td key={i} className="pt-6">
+          <div
+              className={`px-4 py-4 cursor-pointer flex w-full justify-center ${
+                i === today ? 'bg-indigo-700 text-white' : 'text-gray-500 dark:text-gray-100'
+              } rounded-full`}
+            >
+              <p className="text-2xl font-medium w-10 h-10 flex items-center justify-center">
+                {i}
+              </p>
+            </div>
+          </td>
+        );
+        i++;
       }
       if (tds.length > 0) {
           trs.push(<tr>{tds}</tr>);
