@@ -25,19 +25,19 @@ function Event({goals, tasks}) {
 
   return (
     <>
-      <ul>
-        {events.map((event) => (
+      {/* <ul>
+      {events.map((event) => (
           <li key={event.id}>
             {event.title}
-            <ul>Date: {event.date}</ul>
+            <ul>Date: {new Date(event.date + 'T00:00:00+00:00').toLocaleDateString()}</ul>
             <button onClick={() => handleUpdateEvent(event.id, event)}>
-              {event.completed ? 'Incomplete' : 'Complete'}
+              {event.completed ? 'Complete' : 'Incomplete'}
             </button>
               <EditEventForm event={event}/>
                  <DeleteEvent id={event.id}/>
                   </li>
                   ))}
-                  </ul>
+                  </ul> */}
                     <CreateEventForm />
                 </>
               );

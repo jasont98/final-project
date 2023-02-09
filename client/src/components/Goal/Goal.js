@@ -23,28 +23,28 @@ function Goal() {
       completed: !goal.completed
     }));
   };
-  console.log(tasks.description);
+
   return (
     <>
-      <ul>
+      {/* <ul>
         {goals.map((goal) => (
           <li key={goal.id}>
             {goal.description}
-            <ul>Date: {goal.date}</ul>
+            <ul>Date: {new Date(event.date + 'T00:00:00+00:00').toLocaleDateString()}</ul>
             <ul>Tasks:
               {tasks.filter(task => task.goal_id === goal.id).map(task => (
                   <li key={task.id}> Tasks:{task.description}</li>
                 ))}
             </ul>
             <button onClick={() => handleUpdateGoal(goal.id, goal)}>
-              {goal.completed ? 'Incomplete' : 'Complete'}
+              {goal.completed ? 'Complete' : 'Incomplete'}
             </button>
             <AddTaskToGoal goal_id={goal.id} />
             <EditGoalForm goal={goal} />
             <DeleteGoal id={goal.id} />
           </li>
         ))}
-      </ul>
+      </ul> */}
       <CreateGoalForm />
     </>
   );

@@ -19,8 +19,20 @@ export const createEventWithServer = createAsyncThunk(
 export const updateEventWithServer = createAsyncThunk(
   'events/updateEventWithServer',
   async (event, { dispatch }) => {
-    console.log(`Updating event with ID: ${event.id}`);
-    const response = await axios.patch(`/events/${event.id}`, event);
+    console.log(`Updating details for event with ID: ${event.id}`);
+    const { completed, ...eventDetails } = event;
+    const response = await axios.patch(`/events/${event.id}`, { title: event.title });
+    dispatch(updateEvent({ id: event.id, updatedEvent: response.data }));
+    dispatch(fetchEvents());
+    return response.data;
+  }
+);
+
+export const updateEventCompletionWithServer = createAsyncThunk(
+  'events/updateEventCompletionWithServer',
+  async (event, { dispatch }) => {
+    console.log(`Updating event completion with ID: ${event.id}`);
+    const response = await axios.patch(`/events/${event.id}/completion`, event);
     dispatch(updateEvent({ id: event.id, updatedEvent: response.data }));
     dispatch(fetchEvents());
     return response.data;

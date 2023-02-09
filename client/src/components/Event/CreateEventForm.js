@@ -19,8 +19,7 @@ function CreateEventForm() {
       id: uuidv4(),
       title: event.target.elements.title.value,
       date: event.target.elements.date.value,
-      goals: event.target.elements.goals.value,
-      tasks: event.target.elements.tasks.value,
+     
     };
     try {
       dispatch(createEventWithServer(eventData));
@@ -45,9 +44,10 @@ function CreateEventForm() {
         name="date"
         value={createEventForm.date}
         onChange={handleEventFormChange}
+        pattern="MM/dd/yy"
       />
       <br />
-      <label>Goals:</label>
+      {/* <label>Goals:</label>
       <input
         type="text"
         name="goals"
@@ -62,7 +62,7 @@ function CreateEventForm() {
         onChange={handleEventFormChange}
       />
       <br />
-      <br />
+      <br /> */}
       <button type="submit">Create</button>
     </form>
   );

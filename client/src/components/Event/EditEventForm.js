@@ -28,9 +28,8 @@ function EditEventForm({ event }) {
     dispatch(updateEventWithServer({
       ...editEventForm,
       id: editingEvent.id,
-      description: event.target.elements.description.value,
-      date: event.target.elements.date.value,
-      tasks: event.target.elements.tasks.value
+      title: event.target.elements.title.value,   
+      
     }));
   };
 
@@ -43,12 +42,12 @@ function EditEventForm({ event }) {
       <label>Description:</label>
       <input
         type="text"
-        name="description"
-        value={editEventForm?.description || ""}
+        name="title"
+        value={editEventForm?.title || ""}
         onChange={handleEditEventFormChange}
       />
       <br />
-      <label>Date:</label>
+      {/* <label>Date:</label>
       <input
         type="date"
         name="date"
@@ -64,7 +63,7 @@ function EditEventForm({ event }) {
         onChange={handleEditEventFormChange}
       />
       <br />
-      <br />
+      <br /> */}
       <button type="submit">Save</button>
     </form>
     </>)}

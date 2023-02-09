@@ -34,7 +34,19 @@ export const updateGoalWithServer = createAsyncThunk(
   'goals/updateGoalWithServer',
   async (goal, { dispatch }) => {
     console.log(`Updating goal with ID: ${goal.id}`);
-    const response = await axios.patch(`/goals/${goal.id}`, goal);
+    const { completed, ...goalDetails } = goal;
+    const response = await axios.patch(`/goals/${goal.id}`, { description: goal.description });
+    dispatch(updateGoal({ id: goal.id, updatedGoal: response.data }));
+    dispatch(fetchGoals());
+    return response.data;
+  }
+)
+
+export const updateGoalCompletionWithServer = createAsyncThunk(
+  'goals/updateGoalCompletionWithServer',
+  async (goal, { dispatch }) => {
+    console.log(`Updating goal completion with ID: ${goal.id}`);
+    const response = await axios.patch(`/goals/${goal.id}/completion`, goal);
     dispatch(updateGoal({ id: goal.id, updatedGoal: response.data }));
     dispatch(fetchGoals());
     return response.data;

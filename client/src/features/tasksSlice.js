@@ -19,7 +19,19 @@ export const updateTaskWithServer = createAsyncThunk(
   'tasks/updateTaskWithServer',
   async (task, { dispatch }) => {
     console.log(`Updating task with ID: ${task.id}`);
-    const response = await axios.patch(`/tasks/${task.id}`, task);
+    const { completed, ...taskDetails } = task;
+    const response = await axios.patch(`/tasks/${task.id}`, {description: task.description});
+    dispatch(updateTask({ id: task.id, updatedTask: response.data }));
+    dispatch(fetchTasks());
+    return response.data;
+  }
+)
+
+export const updateTaskCompletionWithServer = createAsyncThunk(
+  'tasks/updateTaskCompletionWithServer',
+  async (task, { dispatch }) => {
+    console.log(`Updating task completion with ID: ${task.id}`);
+    const response = await axios.patch(`/tasks/${task.id}/completion`, task);
     dispatch(updateTask({ id: task.id, updatedTask: response.data }));
     dispatch(fetchTasks());
     return response.data;

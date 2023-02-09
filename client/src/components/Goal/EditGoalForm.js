@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setShowInputs,setEditGoalForm, updateGoalWithServer,  setEditingGoal } from '../../features/goalsSlice';
+import { setShowInputs, setEditGoalForm, updateGoalWithServer,  setEditingGoal } from '../../features/goalsSlice';
 
 
 function EditGoalForm({ goal }) {
@@ -29,8 +29,7 @@ function EditGoalForm({ goal }) {
       ...editGoalForm,
       id: editingGoal.id,
       description: event.target.elements.description.value,
-      date: event.target.elements.date.value,
-      tasks: event.target.elements.tasks.value
+
     }));
   };
 
@@ -48,7 +47,7 @@ function EditGoalForm({ goal }) {
         onChange={handleEditGoalFormChange}
       />
       <br />
-      <label>Date:</label>
+      {/* <label>Date:</label>
       <input
         type="date"
         name="date"
@@ -63,7 +62,7 @@ function EditGoalForm({ goal }) {
         value={editGoalForm?.tasks || ""}
         onChange={handleEditGoalFormChange}
       />
-      <br />
+      <br /> */}
       <br />
       <button type="submit">Save</button>
     </form>

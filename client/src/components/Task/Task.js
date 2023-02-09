@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import DeleteTask from '../Task/DeleteTask';
 import CreateTaskForm from './CreateTaskForm';
 import EditTaskForm from './EditTaskForm';
-import { updateTaskWithServer, fetchTasks } from '../../features/tasksSlice';
+import { updateTaskWithServer, deleteTaskWithServer, fetchTasks } from '../../features/tasksSlice';
 
 
 const Task = () => {
@@ -18,27 +18,32 @@ const Task = () => {
 
 
   const handleUpdateTask = (id, task) => {
-    dispatch(updateTaskWithServer({
-      id,
-      completed: !task.completed
-    }));
-  };
+  dispatch(updateTaskWithServer({
+    id,
+    completed: !task.completed
+  }));
+
+  // if (task.completed) {
+  //   dispatch(deleteTaskWithServer(id));
+  // }
+};
+  
 
   return (
     <>
-      <ul>
+      {/* <ul>
         {tasks.map((task) => (
           <li key={task.id}>
             {task.description}
-            <ul>Date: {task.date}</ul>
+            <ul>Date: {new Date(task.date + 'T00:00:00+00:00').toLocaleDateString()}</ul>
             <button onClick={() => handleUpdateTask(task.id, task)}>
-              {task.completed ? 'Incomplete' : 'Complete'}
+              {task.completed ? 'Complete' : 'Incomplete'}
             </button>
               <EditTaskForm task={task}/>
                  <DeleteTask id={task.id}/>
                   </li>
                   ))}
-                  </ul>
+                  </ul> */}
                     <CreateTaskForm />
                 </>
               );

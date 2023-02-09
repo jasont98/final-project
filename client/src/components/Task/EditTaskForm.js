@@ -15,8 +15,8 @@ function EditTaskForm({ task }) {
     dispatch(setShowInputs(!showInputs));
   };
 
-  const handleEditTaskFormChange = (event) => {
-    const { name, value } = event.target;
+  const handleEditTaskFormChange = (task) => {
+    const { name, value } = task.target;
     dispatch(setEditTaskForm({
       ...editTaskForm,
       [name]: value
@@ -29,7 +29,7 @@ function EditTaskForm({ task }) {
       ...editTaskForm,
       id: editingTask.id,
       description: event.target.elements.description.value,
-      date: event.target.elements.date.value,
+      
     
     }));
   };
@@ -47,16 +47,6 @@ function EditTaskForm({ task }) {
         value={editTaskForm?.description || ""}
         onChange={handleEditTaskFormChange}
       />
-      <br />
-      <label>Date:</label>
-      <input
-        type="date"
-        name="date"
-        value={editTaskForm?.date || ""}
-        onChange={handleEditTaskFormChange}
-      />
-      <br />
-      <br />
       <br />
       <button type="submit">Save</button>
     </form>
