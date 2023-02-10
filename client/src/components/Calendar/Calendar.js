@@ -3,14 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchEvents } from '../../features/eventsSlice';
 import { fetchGoals } from '../../features/goalsSlice';
 import { fetchTasks } from '../../features/tasksSlice'
-import {nextMonth, prevMonth} from "../../features/calendarSlice";
+import {nextMonth, prevMonth, setSelectedDate} from "../../features/calendarSlice";
 
 export default function Calendar() {
 
     // const [currentDate, setCurrentDate] = useState(new Date());
-    const currentDate = useSelector(state => state.calendar.currentDate);
-   
-
+    const selectedDate = useSelector(state => state.calendar.selectedDate)
+    const currentDate = useSelector(state => state.calendar.currentDate)
     const today = useSelector(state => state.calendar.today);
     const events = useSelector(state => state.events.events)
     const goals = useSelector(state => state.goals.goals);
@@ -24,8 +23,6 @@ export default function Calendar() {
         dispatch(fetchEvents());
         dispatch(fetchGoals());
         dispatch(fetchTasks());
-        // dispatch(setCurrentDate(new Date()));
-        // dispatch(setToday(new Date().getDate()));
       }, [dispatch]);
       
     
@@ -38,20 +35,23 @@ export default function Calendar() {
         
       let tds = [];
       for (let j = 1; j < firstDayOfWeek; j++) {
-          tds.push(<td />);
+          tds.push(<td key={`td${j}`} />);
       }
         
       while (i <= daysInMonth()) {
         if (tds.length === 7) {
-          trs.push(<tr>{tds}</tr>);
+          trs.push(<tr key={`tr${i}`}>{tds}</tr>);
           tds = [];
         }
-    
+        let idx = i
         tds.push(
-            <td key={i} className="w-full hover:bg-indigo-700 text-white rounded-full ..." onClick={() => {}} >
+            <td key={idx} className="w-full hover:bg-indigo-700 text-white rounded-full ..." onClick={() => {
+                dispatch(setSelectedDate(new Date(`${currentDate.getMonth()+1}-${idx}-${currentDate.getFullYear()}`)));
+              }}
+               >
             <div
                 className={`px-4 py-4 cursor-pointer flex w-full justify-center ${
-                  i === today && currentDate.getMonth() === new Date().getMonth() ? 'bg-indigo-700 text-white' : 'text-gray-500 dark:text-gray-100'
+                  selectedDate.getDate() == i && selectedDate.getMonth() == currentDate.getMonth() ? 'bg-indigo-700 text-white' : 'text-gray-500 dark:text-gray-100'
                 } rounded-full`}
               >
                 <p className="text-2xl font-medium w-10 h-10 flex items-center justify-center">
@@ -63,8 +63,10 @@ export default function Calendar() {
         i++;
       }
       if (tds.length > 0) {
-          trs.push(<tr>{tds}</tr>);
+          trs.push(<tr key={`a${i}`}>{tds}</tr>);
       }
+
+      
       
       const handleNextMonth = () => {
         dispatch(nextMonth());

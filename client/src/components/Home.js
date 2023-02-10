@@ -8,35 +8,31 @@ import { fetchEvents } from '../features/eventsSlice';
 import { fetchGoals } from '../features/goalsSlice';
 import { fetchTasks } from '../features/tasksSlice'
 import { setMessage } from '../features/messagesSlice'
-import { format, isSameDay } from 'date-fns';
+
 
 
 const Home = ({ user }) => {
+
     const events = useSelector(state => state.events.events)
     const goals = useSelector(state => state.goals.goals);
     const tasks = useSelector(state => state.tasks.tasks);
-    const message = useSelector(state => state.messages.message);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const currentDate = new Date();
-        const formattedToday = currentDate.toLocaleDateString();
-        const hasPlans = events.some(event => {
+   
+    const currentDate = new Date();
+
+    const formattedToday = currentDate.toLocaleDateString();
+
+    const hasPlans = events.some(event => {
         const eventDate = new Date(event.date);
         return eventDate.toLocaleDateString() === formattedToday;
         });
-        if (!hasPlans && formattedToday && tasks.length === 0 && goals.length === 0 && events.length === 0) {
-            dispatch(setMessage(`You have nothing planned for today`));
-        } else {
-            dispatch(setMessage(`Your plans for ${formattedToday}`));
-        }
-    })
       
     return (
       <>
       {/* <div className='outer-container'> */}
       <div>Hello {user.name}!</div>
-      <div>{message}</div>
+      <div>{!hasPlans && formattedToday && tasks.length === 0 && goals.length === 0 && events.length === 0 ? "You have nothing planned for today" : `You have hy, ${formattedToday}`}</div>
           <div className="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 pt-6 gap-8">
               <div className="w-full flex items-center justify-center">
               <div className="w-full flex flex-col items-center py-16 md:py-12 bg-gradient-to-r from-indigo-700 to-purple-500 rounded-lg">

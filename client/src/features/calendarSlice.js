@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   currentDate: new Date(),
+  selectedDate: new Date(),
   today: new Date().getDate(),
 };
 
@@ -29,9 +30,12 @@ const calendarSlice = createSlice({
     setToday: (state, action) => {
       state.today = action.payload;
     },
+    setSelectedDate: (state, action) => {
+      state.selectedDate = action.payload;
+    },
   },
 });
 
-export const { setCurrentDate, setToday, nextMonth, prevMonth } = calendarSlice.actions;
+export const { setCurrentDate, setToday, nextMonth, prevMonth, setSelectedDate } = calendarSlice.actions;
 
 export default calendarSlice.reducer;

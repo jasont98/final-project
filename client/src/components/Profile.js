@@ -18,7 +18,6 @@ const Profile = ({user}) => {
     const tasks = useSelector(state => state.tasks.tasks);
     const dispatch = useDispatch();
     
-
     useEffect(() => {
       dispatch(fetchEvents());
       dispatch(fetchGoals());
