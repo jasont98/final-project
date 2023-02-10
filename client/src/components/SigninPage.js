@@ -40,7 +40,7 @@ function SignInCreatePage({user, setUser}) {
             <button className="button-create" >Create Profile</button>
 
               <br/>
-              <RegistrationForm setUser={setUser} />
+              <RegistrationForm setUser={setUser} user={user} />
               
               <button className="button-create">Return</button>
             

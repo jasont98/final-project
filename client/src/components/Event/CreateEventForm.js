@@ -13,7 +13,6 @@ function CreateEventForm() {
   }
 
   const handleCreateSubmit = async (event) => {
-    // console.log("submitted")
     event.preventDefault();
     const eventData = {
       id: uuidv4(),
@@ -47,22 +46,6 @@ function CreateEventForm() {
         pattern="MM/dd/yy"
       />
       <br />
-      {/* <label>Goals:</label>
-      <input
-        type="text"
-        name="goals"
-        value={createEventForm.goals}
-        onChange={handleEventFormChange}
-      />
-       <label>Tasks:</label>
-      <input
-        type="text"
-        name="tasks"
-        value={createEventForm.tasks}
-        onChange={handleEventFormChange}
-      />
-      <br />
-      <br /> */}
       <button type="submit">Create</button>
     </form>
   );

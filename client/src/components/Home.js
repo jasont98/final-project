@@ -9,7 +9,7 @@ import { fetchGoals } from '../features/goalsSlice';
 import { fetchTasks } from '../features/tasksSlice'
 import { setMessage } from '../features/messagesSlice'
 import { format, isSameDay } from 'date-fns';
-// import '../styles/Home.css'
+
 
 const Home = ({ user }) => {
     const events = useSelector(state => state.events.events)

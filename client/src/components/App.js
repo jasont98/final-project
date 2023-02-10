@@ -32,7 +32,7 @@ const App = () => {
     <NavBar />
     <div className="container mx-auto flex-1">
       <Routes>
-       <Route path="/login" element={<SigninPage user={user} setUser={setUser}/>} />
+       <Route path="/login" element={<SigninPage user={user} setUser={setUser} />} />
        <Route path="/home" element={<Home user={user}/>} />
        <Route path="/calendar" element={<Calendar/>} />
        <Route path="/login" element={<SigninPage/>} />
