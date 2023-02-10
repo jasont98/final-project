@@ -8,8 +8,6 @@ function RegistrationForm({setUser}) {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
-  const [birthday, setBirthday] = useState("");
-
   const navigate = useNavigate()
 
   const createAccount = (e) => {
@@ -29,7 +27,7 @@ function RegistrationForm({setUser}) {
     headers: {
         "Content-Type": "application/json",
     },
-    body: JSON.stringify({name, email, password, birthday}),
+    body: JSON.stringify({name, email, password}),
 })
 .then(r => r.json())
 .then((data) => {
@@ -78,16 +76,6 @@ return (
         onChange={(event) => setConfirmPassword(event.target.value)}
         placeholder="Confirm Password"
       />
-      <label className="block mt-4 mb-2 font-medium" htmlFor="birthday"></label>
-        <input
-          className="block w-full p-2 mt-2 rounded-lg"
-          id="birthday"
-          type="date"
-          value={birthday}
-          onChange={ (e) => setBirthday(e.target.value)}
-          placeholder="Birthday"
-        />
-
       <div className="mt-6 text-center">
         <input className="bg-indigo-500 text-white p-3 rounded-lg hover:bg-indigo-600" type= "submit" value="Create Profile"  />
       </div>

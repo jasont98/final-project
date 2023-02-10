@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-
-import '../styles/tailwind.css'
-
-import { fetchEvents, updateEventWithServer, updateEventCompletionWithServer, deleteEventWithServer } from '../features/eventsSlice';
-import { fetchGoals, updateGoalWithServer, deleteGoalWithServer, updateGoalCompletionWithServer } from '../features/goalsSlice';
-import { fetchTasks, updateTaskWithServer, deleteTaskWithServer, updateTaskCompletionWithServer } from '../features/tasksSlice'
-import EditEventForm from './Event/EditEventForm';
+import { fetchEvents } from '../../features/eventsSlice';
+import { fetchGoals } from '../../features/goalsSlice';
+import { fetchTasks } from '../../features/tasksSlice'
+import {nextMonth, prevMonth} from "../../features/calendarSlice";
 
 export default function Calendar() {
 
-    const [currentDate, setCurrentDate] = useState(new Date());
-    const [today, setToday] = useState(new Date().getDate());
+    // const [currentDate, setCurrentDate] = useState(new Date());
+    const currentDate = useSelector(state => state.calendar.currentDate);
+   
 
-    
+    const today = useSelector(state => state.calendar.today);
     const events = useSelector(state => state.events.events)
     const goals = useSelector(state => state.goals.goals);
     const tasks = useSelector(state => state.tasks.tasks);
@@ -26,6 +24,8 @@ export default function Calendar() {
         dispatch(fetchEvents());
         dispatch(fetchGoals());
         dispatch(fetchTasks());
+        // dispatch(setCurrentDate(new Date()));
+        // dispatch(setToday(new Date().getDate()));
       }, [dispatch]);
       
     
@@ -33,7 +33,6 @@ export default function Calendar() {
         return new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
       };
 
-     
       let i = 1;
       const trs = [];
         
@@ -67,14 +66,13 @@ export default function Calendar() {
           trs.push(<tr>{tds}</tr>);
       }
       
-    const nextMonth = () => {
-      setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate()));
-    };
-  
-    const prevMonth = () => {
-      setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, currentDate.getDate()));
-      console.log(prevMonth());
-    };
+      const handleNextMonth = () => {
+        dispatch(nextMonth());
+      };
+    
+      const handlePrevMonth = () => {
+        dispatch(prevMonth());
+      };
 
     return (
         <>
@@ -86,14 +84,14 @@ export default function Calendar() {
                             {/* {currentDate.toLocaleString('default', { month: 'long' })} {currentDate.getFullYear()} ({daysInMonth()} days) */}
                         </h1>
                             <div className="flex items-center text-gray-800 dark:text-gray-100">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chevron-left" width={24} height={24} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round" onClick={prevMonth}>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chevron-left" width={24} height={24} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round" onClick={handlePrevMonth}>
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <polyline points="15 6 9 12 15 18" />
                             </svg>
                                 <h1 className="text-2xl font-bold dark:text-gray-100 text-gray-800">
                                 {currentDate.toLocaleString('default', { month: 'long' })} {currentDate.getFullYear()}
                                 </h1>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler ml-3 icon-tabler-chevron-right" width={24} height={24} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round" onClick={nextMonth}>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler ml-3 icon-tabler-chevron-right" width={24} height={24} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round" onClick={handleNextMonth}>
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <polyline points="9 6 15 12 9 18" />
                             </svg>

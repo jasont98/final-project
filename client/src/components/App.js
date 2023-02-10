@@ -4,7 +4,7 @@ import SigninPage from './SigninPage'
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home"
 import NavBar from './NavBar';
-import Calendar from "./Calendar";
+import Calendar from "./Calendar/Calendar";
 import Task from "./Task/Task";
 import Goal from "./Goal/Goal";
 import Event from "./Event/Event"
