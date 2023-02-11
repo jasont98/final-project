@@ -14,6 +14,9 @@ export default function Calendar() {
     const events = useSelector(state => state.events.events)
     const goals = useSelector(state => state.goals.goals);
     const tasks = useSelector(state => state.tasks.tasks);
+    const filteredEvents = events.filter(event => new Date(event.date).toDateString() === selectedDate.toDateString());
+    const filteredGoals = goals.filter(goal => new Date(goal.date).toDateString() === selectedDate.toDateString());
+    const filteredTasks = tasks.filter(task => new Date(task.date).toDateString() === selectedDate.toDateString());
     const dispatch = useDispatch();
 
     const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
@@ -66,7 +69,8 @@ export default function Calendar() {
           trs.push(<tr key={`a${i}`}>{tds}</tr>);
       }
 
-      
+       
+
       
       const handleNextMonth = () => {
         dispatch(nextMonth());
@@ -152,7 +156,7 @@ export default function Calendar() {
                         <div className="px-4">
                             <div className="border-b pb-4 border-gray-400 border-dashed  pt-5">
                             <p className="text-lg font-medium leading-5 text-gray-800 dark:text-gray-100 pt-2">Events</p>
-                            {events.map((event, index) => (
+                            {filteredEvents.map((event, index) => (
                                 <div key={index}>
                                 <p className="text-sm pt-2  text-gray-600 dark:text-gray-300">{event.title}</p>
                                 {/* <p className="text-sm pt-2 leading-4 leading-none text-gray-600 dark:text-gray-300">{event.description}</p> */}
@@ -161,7 +165,7 @@ export default function Calendar() {
                             </div>
                             <div className="border-b pb-4 border-gray-400 border-dashed pt-5">
                             <p className="text-lg font-medium leading-5 text-gray-800 dark:text-gray-100 pt-2">Goals</p>
-                            {goals.map((goal, index) => (
+                            {filteredGoals.map((goal, index) => (
                                 <div key={index}>
                                 <p className="text-sm pt-2  text-gray-600 dark:text-gray-300">{goal.description}</p>
                                 </div>
@@ -169,7 +173,7 @@ export default function Calendar() {
                             </div>
                             <div className="border-b pb-4 border-gray-400 border-dashed pt-5">
                             <p className="text-lg font-medium leading-5 text-gray-800 dark:text-gray-100 pt-2">Tasks</p>
-                            {tasks.map((task, index) => (
+                            {filteredTasks.map((task, index) => (
                                 <div key={index}>
                                 <p className="text-sm pt-2  text-gray-600 dark:text-gray-300">{task.description}</p>
                                 </div>
