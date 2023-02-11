@@ -32,7 +32,7 @@ const Home = ({ user }) => {
       <>
       {/* <div className='outer-container'> */}
       <div>Hello {user.name}!</div>
-      <div>{!hasPlans && formattedToday && tasks.length === 0 && goals.length === 0 && events.length === 0 ? "You have nothing planned for today" : `You have hy, ${formattedToday}`}</div>
+      {/* <div>{!hasPlans && formattedToday && tasks.length === 0 && goals.length === 0 && events.length === 0 ? "You have nothing planned for today" : `You have hy, ${formattedToday}`}</div> */}
           <div className="container mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 pt-6 gap-8">
               <div className="w-full flex items-center justify-center">
               <div className="w-full flex flex-col items-center py-16 md:py-12 bg-gradient-to-r from-indigo-700 to-purple-500 rounded-lg">
