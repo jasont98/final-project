@@ -7,13 +7,15 @@ import {nextMonth, prevMonth, setSelectedDate} from "../../features/calendarSlic
 
 export default function Calendar() {
 
-    // const [currentDate, setCurrentDate] = useState(new Date());
     const selectedDate = useSelector(state => state.calendar.selectedDate)
     const currentDate = useSelector(state => state.calendar.currentDate)
     const today = useSelector(state => state.calendar.today);
     const events = useSelector(state => state.events.events)
     const goals = useSelector(state => state.goals.goals);
     const tasks = useSelector(state => state.tasks.tasks);
+    const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+    const firstDayOfWeek = firstDay.getDay();
+    const dispatch = useDispatch();
 
     const filteredEvents =  events.filter(event => {
         const nums = event.date.split("-")
@@ -33,9 +35,7 @@ export default function Calendar() {
            return date === selectedDate.toLocaleDateString()
     });
 
-    const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-    const firstDayOfWeek = firstDay.getDay();
-    const dispatch = useDispatch();
+
 
     useEffect(() => {
         dispatch(fetchEvents());
