@@ -29,7 +29,7 @@ const App = () => {
 
     return (
      
-      <div className="mx-auto " >
+      <div className="mx-auto" >
         <NavBar />
         {/* <div className="container mx-auto flex-1 px-4"> */}
           <div className="mx-auto" style={{maxWidth: "1060px"}}>

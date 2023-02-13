@@ -135,9 +135,7 @@ const NavBar = () => {
             </div>
             <div className="mx-auto ml-0 mr-0 container lg:px-0 px-4 h-full relative">
             <div className="mx-auto flex pt-8 items-center px-4 lg:justify-between lg:align-start lg:flex-row mr-auto ml-0" style={{ width: "2450px" }}>
-
-
-<div className="cursor-pointer pr-6" onClick={() => setShow(!show)}>
+            <div className="cursor-pointer pr-6" onClick={() => setShow(!show)}>
                         <svg xmlns="http://www.w3.org/2000/svg" width={50} height={31} viewBox="0 0 50 31" fill="none">
                             <rect x={50} y={31} width={50} height={5} rx="2.5" transform="rotate(180 50 31)" fill="#251F2C" />
                             <rect x={50} y={5} width={50} height={5} rx="2.5" transform="rotate(180 50 5)" fill="#251F2C" />
