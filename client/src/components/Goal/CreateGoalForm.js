@@ -1,29 +1,31 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { createGoalWithServer, setCreateGoalForm } from '../../features/goalsSlice';
-import { v4 as uuidv4 } from 'uuid';
+import { createGoalWithServer, setCreateGoalForm, setErrorMessage } from '../../features/goalsSlice';
 
 function CreateGoalForm() {
   
   const dispatch = useDispatch();
   const createGoalForm = useSelector((state) => state.goals.createGoalForm);
+  const errorMessage = useSelector((state) => state.goals.errorMessage);
 
   const handleGoalFormChange = (event) => {
     const { name, value } = event.target.value;
     dispatch(setCreateGoalForm({ [name]: value }));
+    dispatch(setErrorMessage(''));
   }
 
   const handleCreateSubmit = async (event) => {
     // console.log(event.value)
     event.preventDefault();
     const goalData = {
-      id: uuidv4(),
       description: event.target.elements.description.value,
       date: event.target.elements.date.value
     };
-    // console.log(goalData.date);
+    if (!goalData.description || !goalData.date) {
+      dispatch(setErrorMessage('Both description and date are required fields'));
+      return;
+    }
     try {
       dispatch(createGoalWithServer(goalData));
-      console.log(goalData.date)
     } catch (error) {
       console.error(error);
     }
@@ -52,6 +54,11 @@ function CreateGoalForm() {
         onChange={handleGoalFormChange}
       />
       </div>
+      {errorMessage && 
+        <div className="text-red-500 font-medium mb-3">
+          {errorMessage}
+        </div>
+      }
       <button className="bg-blue-500 hover:bg-blue-400 text-white font-medium py-2 px-4 rounded">Create</button>
     </form>
   );

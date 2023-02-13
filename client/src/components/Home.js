@@ -27,7 +27,7 @@ const Home = ({ user }) => {
         const eventDate = new Date(event.date);
         return eventDate.toLocaleDateString() === formattedToday;
         });
-      
+      console.log(goals)
     return (
       <>
         <div className="relative top-0 w-full flex items-center justify-center">

@@ -1,26 +1,32 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { createEventWithServer, setCreateEventForm } from '../../features/eventsSlice';
+import { createEventWithServer, setCreateEventForm, setErrorMessage } from '../../features/eventsSlice';
 import { v4 as uuidv4 } from 'uuid';
 
 function CreateEventForm() {
   
   const dispatch = useDispatch();
   const createEventForm = useSelector((state) => state.events.createEventForm);
+  const errorMessage = useSelector((state) => state.events.errorMessage);
 
   const handleEventFormChange = (event) => {
     const { name, value } = event.target;
     dispatch(setCreateEventForm({ [name]: value }));
+    dispatch(setErrorMessage(''));
   }
 
   const handleCreateSubmit = async (event) => {
     event.preventDefault();
-    const eventDate = new Date(event.target.elements.date.value);
-    console.log(eventDate)
+    // const eventDate = new Date(event.target.elements.date.value);
+    // console.log(eventDate)
     const eventData = {
       id: uuidv4(),
       title: event.target.elements.title.value,
-      date: eventDate.toISOString(),
+      date: event.target.elements.date.value
     };
+    if (!eventData.title || !eventData.date) {
+      dispatch(setErrorMessage('Both title and date are required fields'));
+      return;
+    }
     try {
       dispatch(createEventWithServer(eventData));
     } catch (error) {
@@ -47,9 +53,14 @@ function CreateEventForm() {
           name="date"
           value={createEventForm.date}
           onChange={handleEventFormChange}
-          pattern="MM/dd/yy"
+      
         />
       </div>
+      {errorMessage && 
+        <div className="text-red-500 font-medium mb-3">
+          {errorMessage}
+        </div>
+      }
       <button className="bg-blue-500 hover:bg-blue-400 text-white font-medium py-2 px-4 rounded">
         Create
       </button>

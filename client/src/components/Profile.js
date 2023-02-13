@@ -55,7 +55,8 @@ const Profile = ({user}) => {
       dispatch(deleteTaskWithServer(id));
     }
 };
-    
+console.log(formattedDate);    
+
 return (
 <div className="p-10">
   <div className="bg-gray-300 py-6 px-8">
@@ -68,7 +69,11 @@ return (
     <div className="text-xl font-bold mt-3 mb-3">Events:</div>
     <div className="flex flex-col mx-4 my-4">
       {events
-        .filter(event => new Date(event.date).toLocaleDateString() === formattedDate)
+         .filter(event =>{
+          const nums = event.date.split("-")
+          const date = `${parseInt(nums[1])}/${nums[2]}/${nums[0]}`
+           return date === formattedDate
+          })
         .map(event => (
           <div className="p-4 border rounded-lg shadow-md my-4">
             <div key={event.id}>
@@ -88,7 +93,11 @@ return (
   <div className="text-xl font-bold mt-3 mb-3">Goals:</div>
     <div className="flex flex-col mx-4 my-4">
       {goals
-        .filter(goal => new Date(goal.date).toLocaleDateString() === formattedDate)
+        .filter(goal =>{
+          const nums = goal.date.split("-")
+          const date = `${parseInt(nums[1])}/${nums[2]}/${nums[0]}`
+           return date === formattedDate
+          })
         .map(goal => (
           <div className="p-4 border rounded-lg shadow-md my-4">
             <div key={goal.id}>
@@ -108,7 +117,11 @@ return (
   <li className="text-lg font-bold">Tasks:
     <div className="flex flex-col mx-4 my-4">
       {tasks
-        .filter(task => new Date(task.date).toLocaleDateString() === formattedDate)
+        .filter(task =>{
+          const nums = task.date.split("-")
+          const date = `${parseInt(nums[1])}/${nums[2]}/${nums[0]}`
+           return date === formattedDate
+          })
         .map(task => (
           <div className="p-4 border rounded-lg shadow-md">
             <div key={task.id}>

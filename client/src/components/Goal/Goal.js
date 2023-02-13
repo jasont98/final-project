@@ -15,7 +15,7 @@ function Goal() {
   useEffect(() => {
     dispatch(fetchGoals());
     dispatch(fetchTasks());
-  }, [dispatch]);
+  }, []);
 
   const handleUpdateGoal = (id, goal) => {
     dispatch(updateGoalWithServer({
@@ -30,7 +30,7 @@ function Goal() {
         {goals.map((goal) => (
           <li key={goal.id}>
             {goal.description}
-            <ul>Date: {new Date(goal.date + 'T00:00:00+00:00').toLocaleDateString()}</ul>
+            {new Date(goal.date + 'T00:00:00+00:00').toLocaleDateString("en-US", {timeZone: "UTC"})}
             <ul>Tasks:
               {tasks.filter(task => task.goal_id === goal.id).map(task => (
                   <li key={task.id}> Tasks:{task.description}</li>

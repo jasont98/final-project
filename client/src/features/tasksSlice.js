@@ -10,6 +10,10 @@ export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
 export const createTaskWithServer = createAsyncThunk(
   'tasks/createTaskWithServer',
   async (task, { dispatch }) => {
+    if (!task.description || !task.date) {
+      dispatch(setErrorMessage('Both description and date are required'));
+      return;
+    }
     const response = await axios.post('/tasks', task);
     return response.data;
   }
@@ -63,7 +67,8 @@ const tasksSlice = createSlice({
       completed: false
     },
     showInputs: false,
-    editingTask: null
+    editingTask: null,
+    errorMessage: null
   },
   reducers: {
     createTask(state, action) {
@@ -72,7 +77,9 @@ const tasksSlice = createSlice({
         text: action.payload,
       });
     },
-    
+    setErrorMessage(state, action) {
+      state.errorMessage = action.payload;
+    },
     updateTask(state, action) {
       const { id, updatedTask } = action.payload;
       const taskIndex = state.tasks.findIndex(task => task.id === id);
@@ -116,6 +123,7 @@ const tasksSlice = createSlice({
       setEditTaskForm,
       setCreateTaskForm,
       setShowInputs,
+      setErrorMessage,
       setEditingTask
       } = tasksSlice.actions;
       

@@ -10,6 +10,10 @@ export const fetchEvents = createAsyncThunk('events/fetchEvents', async () => {
 export const createEventWithServer = createAsyncThunk(
   'events/createEventWithServer',
   async (event, { dispatch }) => {
+    if (!event.title || !event.date) {
+      dispatch(setErrorMessage('Both title and date are required'));
+      return;
+    }
     const response = await axios.post('/events', event);
     // dispatch(createEvent(response.data));
     return response.data;
@@ -67,7 +71,8 @@ const eventsSlice = createSlice({
       completed: false
     },
     showInputs: false,
-    editingEvent: null
+    editingEvent: null,
+    errorMessage: null
   },
   reducers: {
     createEvent(state, action) {
@@ -75,6 +80,9 @@ const eventsSlice = createSlice({
         id: uuid(), // use the uuid function to generate a unique id
         text: action.payload,
       });
+    },
+    setErrorMessage(state, action) {
+      state.errorMessage = action.payload;
     },
     updateEvent(state, action) {
       const { id, updatedEvent } = action.payload;
@@ -119,6 +127,7 @@ const eventsSlice = createSlice({
       setEditEventForm,
       setCreateEventForm,
       setShowInputs,
+      setErrorMessage,
       setEditingEvent
       } = eventsSlice.actions;
       

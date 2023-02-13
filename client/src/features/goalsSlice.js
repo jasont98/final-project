@@ -10,23 +10,12 @@ export const fetchGoals = createAsyncThunk('goals/fetchGoals', async () => {
 export const createGoalWithServer = createAsyncThunk(
   'goals/createGoalWithServer',
   async (goal, { dispatch }) => {
-    const response = await axios.post('/goals', goal);
-    // dispatch(createGoal(response.data));
-    return response.data;
-  }
-);
-
-export const createTaskWithServer = createAsyncThunk(
-  'goals/createTaskWithServer',
-  async (task, { dispatch, getState }) => {
-    const goalId = task.goal_id || getState().goals.editingGoal;
-
-    if (!goalId) {
-      throw new Error('Goal ID is required to create a task.');
+    if (!goal.description || !goal.date) {
+      dispatch(setErrorMessage('Both description and date are required'));
+      return;
     }
-
-    const response = await axios.post(`/goals/${goalId}/tasks`, task);
-    return response.data;
+    const response = await axios.post('/goals', goal);
+    return response.data
   }
 );
 
@@ -85,8 +74,7 @@ const goalsSlice = createSlice({
     },
     showInputs: false,
     editingGoal: null,
-    showGoalTaskInputs: false,
-    editingGoalTask: null
+    errorMessage: null
   },
   
   reducers: {
@@ -95,6 +83,9 @@ const goalsSlice = createSlice({
         id: uuid(), // use the uuid function to generate a unique id
         text: action.payload,
       });
+    },
+    setErrorMessage(state, action) {
+      state.errorMessage = action.payload;
     },
     updateGoal(state, action) {
       const { id, updatedGoal } = action.payload;
@@ -149,6 +140,7 @@ const goalsSlice = createSlice({
       setShowGoalTaskInputs,
       setEditingGoalTaskInputs,
       createGoalTaskForm,
+      setErrorMessage,
       editGoalTaskForm,
       } = goalsSlice.actions;
       

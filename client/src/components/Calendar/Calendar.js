@@ -14,9 +14,25 @@ export default function Calendar() {
     const events = useSelector(state => state.events.events)
     const goals = useSelector(state => state.goals.goals);
     const tasks = useSelector(state => state.tasks.tasks);
-    const filteredEvents = events.filter(event => new Date(event.date).toDateString() === selectedDate.toDateString());
-    const filteredGoals = goals.filter(goal => new Date(goal.date).toDateString() === selectedDate.toDateString());
-    const filteredTasks = tasks.filter(task => new Date(task.date).toDateString() === selectedDate.toDateString());
+
+    const filteredEvents =  events.filter(event => {
+        const nums = event.date.split("-")
+          const date = `${parseInt(nums[1])}/${nums[2]}/${nums[0]}`
+           return date === selectedDate.toLocaleDateString()
+    });
+    
+    const filteredGoals = goals.filter(goal => {
+        const nums = goal.date.split("-")
+          const date = `${parseInt(nums[1])}/${nums[2]}/${nums[0]}`
+           return date === selectedDate.toLocaleDateString()
+    });
+
+    const filteredTasks = tasks.filter(task => {
+        const nums = task.date.split("-")
+          const date = `${parseInt(nums[1])}/${nums[2]}/${nums[0]}`
+           return date === selectedDate.toLocaleDateString()
+    });
+
     const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
     const firstDayOfWeek = firstDay.getDay();
     const dispatch = useDispatch();
@@ -48,11 +64,12 @@ export default function Calendar() {
         tds.push(
             <td key={idx} className="w-full hover:bg-indigo-700 text-white rounded-full ..." onClick={() => {
                 dispatch(setSelectedDate(new Date(`${currentDate.getMonth()+1}-${idx}-${currentDate.getFullYear()}`)));
+                console.log(selectedDate);
               }}
                >
             <div
                 className={`px-4 py-4 cursor-pointer flex w-full justify-center ${
-                  selectedDate.getDate() == i && selectedDate.getMonth() == currentDate.getMonth() ? 'bg-indigo-700 text-white' : 'text-gray-500 dark:text-gray-100'
+                  selectedDate.getDate() === i && selectedDate.getMonth() === currentDate.getMonth() ? 'bg-indigo-700 text-white' : 'text-gray-500 dark:text-gray-100'
                 } rounded-full`}
               >
                 <p className="text-2xl font-medium w-10 h-10 flex items-center justify-center">
