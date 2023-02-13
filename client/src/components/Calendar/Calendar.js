@@ -17,10 +17,9 @@ export default function Calendar() {
     const filteredEvents = events.filter(event => new Date(event.date).toDateString() === selectedDate.toDateString());
     const filteredGoals = goals.filter(goal => new Date(goal.date).toDateString() === selectedDate.toDateString());
     const filteredTasks = tasks.filter(task => new Date(task.date).toDateString() === selectedDate.toDateString());
-    const dispatch = useDispatch();
-
     const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
     const firstDayOfWeek = firstDay.getDay();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(fetchEvents());
@@ -28,7 +27,6 @@ export default function Calendar() {
         dispatch(fetchTasks());
       }, [dispatch]);
       
-    
     const daysInMonth = () => {
         return new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
       };
@@ -69,9 +67,6 @@ export default function Calendar() {
           trs.push(<tr key={`a${i}`}>{tds}</tr>);
       }
 
-       
-
-      
       const handleNextMonth = () => {
         dispatch(nextMonth());
       };
@@ -83,8 +78,8 @@ export default function Calendar() {
     return (
         <>
             <div className="flex items-center justify-center py-8 px-4">
-                <div className="2xl:w-1/3 xl:w-1/2 lg:w-3/5 sm:w-4/5 w-full shadow-lg">
-                <div className="md:p-16 md:pb-12 p-5 dark:bg-gray-800 bg-white rounded-t" style={{ width: '110%' }}>
+            <div className="2xl:w-1/3 xl:w-1/2 lg:w-3/5 sm:w-4/5 w-full shadow-lg mx-auto justify-center">
+                <div className="md:p-16 md:pb-12 p-5 dark:bg-gray-800 bg-white rounded-t" style={{ width: '190%' }}>
                         <div className="px-4 flex items-center justify-between align-middle">
                         <h1 className="text-2xl font-bold dark:text-gray-100 text-gray-800">
                             {/* {currentDate.toLocaleString('default', { month: 'long' })} {currentDate.getFullYear()} ({daysInMonth()} days) */}
@@ -105,7 +100,7 @@ export default function Calendar() {
                         </div>
                     <div className="container overflow-hidden">
                     <div className="flex items-center justify-between pt-12 max-w-full overflow-x-auto">
-                            <table className="w-full">
+                            <table >
                                 <thead>
                                     <tr>
                                         <th>
@@ -152,7 +147,7 @@ export default function Calendar() {
                         </div>
                         </div>
                     </div>
-                    <div className="md:py-8 py-5 md:px-16 px-5 dark:bg-gray-700 bg-gray-50 rounded-b" style={{ width: '110%' }}>
+                    <div className="md:py-8 py-5 md:px-16 px-5 dark:bg-gray-700 bg-gray-50 rounded-b" style={{ width: '190%' }}>
                         <div className="px-4">
                             <div className="border-b pb-4 border-gray-400 border-dashed  pt-5">
                             <p className="text-lg font-medium leading-5 text-gray-800 dark:text-gray-100 pt-2">Events</p>

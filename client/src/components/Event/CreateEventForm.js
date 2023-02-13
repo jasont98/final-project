@@ -14,11 +14,12 @@ function CreateEventForm() {
 
   const handleCreateSubmit = async (event) => {
     event.preventDefault();
+    const eventDate = new Date(event.target.elements.date.value);
+    console.log(eventDate)
     const eventData = {
       id: uuidv4(),
       title: event.target.elements.title.value,
-      date: event.target.elements.date.value,
-     
+      date: eventDate.toISOString(),
     };
     try {
       dispatch(createEventWithServer(eventData));
@@ -26,27 +27,32 @@ function CreateEventForm() {
       console.error(error);
     }
   };
-
   return (
-    <form onSubmit={handleCreateSubmit}>
-      <label>Title:</label>
-      <input
-        type="text"
-        name="title"
-        value={createEventForm.title}
-        onChange={handleEventFormChange}
-      />
-      <br />
-      <label>Date:</label>
-      <input
-        type="date"
-        name="date"
-        value={createEventForm.date}
-        onChange={handleEventFormChange}
-        pattern="MM/dd/yy"
-      />
-      <br />
-      <button type="submit">Create</button>
+    <form onSubmit={handleCreateSubmit} className="p-5 bg-gray-200">
+      <div className="mb-3">
+        <label className="block text-gray-700 font-medium mb-2">Title:</label>
+        <input
+          className="w-full border border-gray-400 p-2"
+          type="text"
+          name="title"
+          value={createEventForm.title}
+          onChange={handleEventFormChange}
+        />
+      </div>
+      <div className="mb-3">
+        <label className="block text-gray-700 font-medium mb-2">Date:</label>
+        <input
+          className="w-full border border-gray-400 p-2"
+          type="date"
+          name="date"
+          value={createEventForm.date}
+          onChange={handleEventFormChange}
+          pattern="MM/dd/yy"
+        />
+      </div>
+      <button className="bg-blue-500 hover:bg-blue-400 text-white font-medium py-2 px-4 rounded">
+        Create
+      </button>
     </form>
   );
 }

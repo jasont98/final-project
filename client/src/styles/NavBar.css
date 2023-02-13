@@ -1,0 +1,30 @@
+// navbar.css
+@media screen and (max-width: 768px) {
+  .navigation-menu ul {
+
+    position: absolute;
+    top: 60px;
+    left: 0;
+    
+    flex-direction: column;
+   
+    width: 100%;
+    height: calc(100vh - 77px);
+    background-color: white;
+    border-top: 1px solid black;
+  }
+  .navigation-menu li {
+    
+    text-align: center;
+    margin: 0;
+  }
+  .navigation-menu li a {
+    color: black;
+    
+    width: 100%;
+    padding: 1.5rem 0;
+  }
+  .navigation-menu li:hover {
+    background-color: #eee;
+  }
+}

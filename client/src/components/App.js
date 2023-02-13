@@ -27,23 +27,27 @@ const App = () => {
       } )
     }, [])
 
-  return (
-    <div className="flex h-full">
-    <NavBar />
-    <div className="container mx-auto flex-1">
-      <Routes>
-       <Route path="/login" element={<SigninPage user={user} setUser={setUser} />} />
-       <Route path="/home" element={<Home user={user}/>} />
-       <Route path="/calendar" element={<Calendar/>} />
-       <Route path="/login" element={<SigninPage/>} />
-       <Route path="/tasks" element={<Task user={user}/>} />
-       <Route path="/goals" element={<Goal/>} />
-       <Route path="/events" element={<Event/>} />
-       <Route path="/profile" element={<Profile user={user}/>} />
-       </Routes>
-       </div>
-   </div>
-  )
+    return (
+     
+      <div className="mx-auto " >
+        <NavBar />
+        {/* <div className="container mx-auto flex-1 px-4"> */}
+          <div className="mx-auto" style={{maxWidth: "1060px"}}>
+            <Routes>
+              <Route path="/login" element={<SigninPage user={user} setUser={setUser} />} />
+              <Route path="/home" element={<Home user={user}/>} />
+              <Route path="/calendar" element={<Calendar/>} />
+              <Route path="/login" element={<SigninPage/>} />
+              <Route path="/tasks" element={<Task user={user}/>} />
+              <Route path="/goals" element={<Goal/>} />
+              <Route path="/events" element={<Event/>} />
+              <Route path="/profile" element={<Profile user={user}/>} />
+            </Routes>
+        
+        </div>
+      </div>
+      
+    )
 }
 
 export default App

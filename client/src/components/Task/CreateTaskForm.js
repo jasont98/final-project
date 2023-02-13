@@ -28,24 +28,28 @@ function CreateTaskForm({goal_id}) {
   };
 
   return (
-    <form onSubmit={handleCreateSubmit}>
-      <label>Description:</label>
+    <form onSubmit={handleCreateSubmit} className="p-5 bg-gray-200">
+      <div className="mb-3">
+      <label className="block text-gray-700 font-medium mb-2">Description:</label>
       <input
+        className="w-full border border-gray-400 p-2"
         type="text"
         name="description"
         value={createTaskForm.description}
         onChange={handleTaskFormChange}
       />
-      <br />
-      <label>Date:</label>
+      </div>
+      <div className="mb-3">
+      <label className="block text-gray-700 font-medium mb-2">Date:</label>
       <input
+        className="w-full border border-gray-400 p-2"
         type="date"
         name="date"
         value={createTaskForm.date}
         onChange={handleTaskFormChange}
       />
-      <br />
-      <button type="submit">Create</button>
+     </div>
+      <button type="submit" className="bg-blue-500 hover:bg-blue-400 text-white font-medium py-2 px-4 rounded">Create</button>
     </form>
   );
 }
