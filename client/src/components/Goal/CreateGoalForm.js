@@ -20,12 +20,15 @@ function CreateGoalForm() {
       description: event.target.elements.description.value,
       date: event.target.elements.date.value
     };
+    // console.log(goalData.date);
     try {
       dispatch(createGoalWithServer(goalData));
+      console.log(goalData.date)
     } catch (error) {
       console.error(error);
     }
   };
+  
 
   return (
     <form onSubmit={handleCreateSubmit} className="p-5 bg-gray-200">

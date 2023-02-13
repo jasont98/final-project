@@ -24,6 +24,7 @@ const Profile = ({user}) => {
       dispatch(fetchGoals());
       dispatch(fetchTasks());
     }, [dispatch]);
+    console.log(goals)
 
     const handleUpdateGoal = (id, goal) => {
       dispatch(updateGoalCompletionWithServer({
