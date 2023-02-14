@@ -27,57 +27,57 @@ const Home = ({ user }) => {
         const eventDate = new Date(event.date);
         return eventDate.toLocaleDateString() === formattedToday;
         });
-      console.log(goals)
+      
     return (
       <>
         <div className="relative top-0 w-full flex items-center justify-center">
             <div>Hello {user.name}!</div>
         </div>
-      {/* <div>{!hasPlans && formattedToday && tasks.length === 0 && goals.length === 0 && events.length === 0 ? "You have nothing planned for today" : `You have hy, ${formattedToday}`}</div> */}
       <div className="container ml-auto mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 pt-6 gap-8 text-center">
               <div className="w-full flex items-center justify-center">
-              <div className="w-full flex flex-col items-center py-16 md:py-12 bg-gradient-to-r from-indigo-700 to-purple-500 rounded-lg">
+              <div className="w-full flex flex-col items-center py-16 md:py-12 bg-gray-200 bg-opacity-40 rounded-lg p-2 m-1">
                   <div className="w-full flex items-center justify-center">
                           <div className="flex flex-col items-center">
-                              <p className="mt-2 text-xs sm:text-sm md:text-base font-semibold text-center text-white">Events</p>
+                              <p className="text-lg sm:text-xl md:text-2xl font-bold text-black">Events</p>
                               <Event />
                           </div>
                       </div>
                       <div className="flex items-center mt-7">
                           <div className>
-                              <p className="text-xs text-gray-300">Count:</p>
-                              <p className="mt-2 text-base sm:text-lg md:text-xl 2xl:text-2xl text-gray-50">{events.length}</p>
+                              <p className="text-xs text-black">Count:</p>
+                              <p className="mt-2 text-base sm:text-lg md:text-xl 2xl:text-2xl text-black">{events.length}</p>
                           </div>
                       </div>
                   </div>
               </div>
               <div className="w-full flex items-center justify-center">
-              <div className="w-full flex flex-col items-center py-16 md:py-12 bg-gradient-to-r from-indigo-700 to-purple-500 rounded-lg">                      <div className="w-full flex items-center justify-center">
+              <div className="w-full flex flex-col items-center py-16 md:py-12 bg-gray-200 bg-opacity-40 rounded-lg p-2 m-1">
+              <div className="w-full flex items-center justify-center">
                           <div className="flex flex-col items-center">
-                              <p className="mt-2 text-xs sm:text-sm md:text-base font-semibold text-center text-white">Goals</p>
+                              <p className="text-lg sm:text-xl md:text-2xl font-bold text-black">Goals</p>
                               <Goal />
                           </div>
                       </div>
                       <div className="flex items-center mt-7">
                           <div className>
-                              <p className="text-xs text-gray-300">Count:</p>
-                              <p className="mt-2 text-base sm:text-lg md:text-xl 2xl:text-2xl text-gray-50">{goals.length}</p>
+                              <p className="text-xs text-black">Count:</p>
+                              <p className="mt-2 text-base sm:text-lg md:text-xl 2xl:text-2xl text-black">{goals.length}</p>
                           </div>
                       </div>
                   </div>
               </div>
               <div className="w-full flex items-center justify-center">
-              <div className="w-full flex flex-col items-center py-16 md:py-12 bg-gradient-to-r from-indigo-700 to-purple-500 rounded-lg">
+              <div className="w-full flex flex-col items-center py-16 md:py-12 bg-gray-200 bg-opacity-40 rounded-lg p-2 m-1">
                       <div className="w-full flex items-center justify-center">
                           <div className="flex flex-col items-center">
-                              <p className="mt-2 text-xs sm:text-sm md:text-base font-semibold text-center text-white">Tasks</p>
+                              <p className="text-lg sm:text-xl md:text-2xl font-bold text-black">Tasks</p>
                               <Task />
                           </div>
                       </div>
                       <div className="flex items-center mt-7">
                           <div className>
-                              <p className="text-xs text-gray-300">Count:</p>
-                              <p className="mt-2 text-base sm:text-lg md:text-xl 2xl:text-2xl text-gray-50">{tasks.length}</p>
+                              <p className="text-xs text-black">Count:</p>
+                              <p className="mt-2 text-base sm:text-lg md:text-xl 2xl:text-2xl text-black">{tasks.length}</p>
                           </div>
                       </div>
                   </div>

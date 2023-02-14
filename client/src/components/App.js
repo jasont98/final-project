@@ -27,9 +27,13 @@ const App = () => {
       } )
     }, [])
 
+    if (user === null) {
+      return <SigninPage user={user} setUser={setUser} />;
+    }
+
     return (
      
-      <div className="mx-auto" >
+      <div className="mx-auto justify-center items-center"  >
         <NavBar />
         {/* <div className="container mx-auto flex-1 px-4"> */}
           <div className="mx-auto" style={{maxWidth: "1060px"}}>

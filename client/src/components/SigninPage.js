@@ -6,13 +6,17 @@ import Signin from "./Signin.js"
 
 function SignInCreatePage({user, setUser}) {
 
+  const [showRegistrationForm, setShowRegistrationForm] = useState(false);
+
+  const toggleRegistrationForm = () => {
+    setShowRegistrationForm(!showRegistrationForm);
+  };
  
   const logout = () => {
     fetch('/logout', {
     method: "DELETE",
     headers: {
       "Content-Type": "Application/json"
-
     }
   })
   .then (() => {
@@ -25,26 +29,26 @@ function SignInCreatePage({user, setUser}) {
        <div>
          <div>
          <header>
-     <h2 className="h2-loop">GitIt</h2>
+     {/* <h2 className="h2-loop">GitIt</h2> */}
      </header>
          </div>
       
-      <div className="modalParent">
+      <div className="container mx-auto p-5 bg-gray-300 justify-center text-center text-xl font-bold">
 
-      {user ? <button className="button-create" onClick={logout}>Logout</button> : null}
+      {user !== null && logout ? <h1 className="ml-2">See you again soon!</h1> : null}
       {user === null ? <h1>Welcome</h1> : null}
-      {user !== null && logout ? <h1>See you again soon!</h1> : null}
+      {user ? <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full ml-1" onClick={logout}>Logout</button> : null}
       {user === null ? (
         <>
           <Signin setUser={setUser} />
           <br/>
-          <button className="button-create" >Create Profile</button>
-
-            <br/>
-            <RegistrationForm setUser={setUser} user={user} />
-            
-            <button className="button-create">Return</button>
-          
+          <button className="button-create" onClick={toggleRegistrationForm}>Create Profile</button>
+            {showRegistrationForm && (
+              <>
+                <RegistrationForm setUser={setUser} user={user} />
+                <button className="button-create" onClick={toggleRegistrationForm}>Return</button>
+              </>
+            )}
         </>
       ) : null}
         </div>

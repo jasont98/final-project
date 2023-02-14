@@ -7,6 +7,7 @@ import {nextMonth, prevMonth, setSelectedDate} from "../../features/calendarSlic
 
 export default function Calendar() {
 
+    // const [currentDate, setCurrentDate] = useState(new Date());
     const selectedDate = useSelector(state => state.calendar.selectedDate)
     const currentDate = useSelector(state => state.calendar.currentDate)
     const today = useSelector(state => state.calendar.today);
@@ -34,8 +35,6 @@ export default function Calendar() {
           const date = `${parseInt(nums[1])}/${nums[2]}/${nums[0]}`
            return date === selectedDate.toLocaleDateString()
     });
-
-
 
     useEffect(() => {
         dispatch(fetchEvents());

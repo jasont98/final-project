@@ -31,10 +31,10 @@ function SignIn({setUser}) {
 
 
     return (
-      <div className="flex justify-center w-1/3 mt-10">
+      <div className="flex justify-center w-1/3 mt-10 mx-auto ">
         <>
           {error && <p className="error-message text-red-500 text-sm mt-3">{error}</p>}
-          <form className="bg-white p-6 rounded-lg shadow-md" onSubmit={login}>
+          <form className="bg-white justify-center p-6 rounded-lg shadow-md" onSubmit={login}>
             <label htmlFor="signInName" className="block font-medium text-gray-700 mb-2">Email</label>
             <input
               id="signInName"
