@@ -19,7 +19,7 @@ function CreateEventForm() {
     // const eventDate = new Date(event.target.elements.date.value);
     // console.log(eventDate)
     const eventData = {
-      id: uuidv4(),
+      // id: uuidv4(),
       title: event.target.elements.title.value,
       date: event.target.elements.date.value
     };

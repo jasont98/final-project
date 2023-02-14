@@ -18,12 +18,29 @@ export default function Calendar() {
     const firstDayOfWeek = firstDay.getDay();
     const dispatch = useDispatch();
 
-    const filteredEvents =  events.filter(event => {
-        const nums = event.date.split("-")
-          const date = `${parseInt(nums[1])}/${nums[2]}/${nums[0]}`
-           return date === selectedDate.toLocaleDateString()
-    });
-    
+    // const filteredEvents = events.filter(event => {
+    //     const nums = event.date.split("-");
+    //     const date = new Date(nums[0], nums[1] - 1, nums[2]);
+    //     const selectedMonth = selectedDate.getMonth();
+    //     const currentMonth = currentDate.getMonth();
+    //     const eventMonth = date.getMonth();
+      
+    //     return (
+    //       (selectedMonth === currentMonth && date.getDate() === selectedDate.getDate()) ||
+    //       (selectedMonth !== currentMonth && eventMonth === selectedMonth)
+    //     );
+    //   });
+
+    const filteredEvents = events.filter(event => {
+        const nums = event.date.split("-");
+        const date = new Date(nums[0], nums[1] - 1, nums[2]);
+        const selectedDateString = selectedDate.toLocaleDateString();
+        const eventDateString = date.toLocaleDateString();
+      
+        return selectedDateString === eventDateString;
+      });
+      
+      
     const filteredGoals = goals.filter(goal => {
         const nums = goal.date.split("-")
           const date = `${parseInt(nums[1])}/${nums[2]}/${nums[0]}`
