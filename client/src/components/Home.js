@@ -33,7 +33,7 @@ const Home = ({ user }) => {
         <div className="relative top-0 w-full flex items-center justify-center">
             <div>Hello {user.name}!</div>
         </div>
-      <div className="container ml-auto mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 pt-6 gap-8 text-center">
+      <div className="container ml-auto mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 pt-6 gap-8 text-center" style={{marginTop: "90px"}}>
               <div className="w-full flex items-center justify-center">
               <div className="w-full flex flex-col items-center py-16 md:py-12 bg-gray-200 bg-opacity-40 rounded-lg p-2 m-1">
                   <div className="w-full flex items-center justify-center">
