@@ -31,20 +31,20 @@ const Home = ({ user }) => {
     return (
       <>
         <div className="relative top-0 w-full flex items-center justify-center">
-            <div>Hello {user.name}!</div>
+        <div class="text-2xl transition duration-600 transform hover:scale-110">Hello {user.name}!</div>
         </div>
-      <div className="container ml-auto mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 pt-6 gap-8 text-center" style={{marginTop: "90px"}}>
+      <div className="container ml-auto mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 pt-6 gap-9 text-center" style={{marginTop: "90px"}}>
               <div className="w-full flex items-center justify-center">
               <div className="w-full flex flex-col items-center py-16 md:py-12 bg-gray-200 bg-opacity-40 rounded-lg p-2 m-1">
                   <div className="w-full flex items-center justify-center">
                           <div className="flex flex-col items-center">
-                              <p className="text-lg sm:text-xl md:text-2xl font-bold text-black">Events</p>
+                              <p className="text-lg sm:text-xl md:text-2xl font-bold text-black mb-5">Events</p>
                               <Event />
                           </div>
                       </div>
                       <div className="flex items-center mt-7">
                           <div className>
-                              <p className="text-xs text-black">Count:</p>
+                              <p className="text-xl text-black font-bold">Count:</p>
                               <p className="mt-2 text-base sm:text-lg md:text-xl 2xl:text-2xl text-black">{events.length}</p>
                           </div>
                       </div>
@@ -54,13 +54,13 @@ const Home = ({ user }) => {
               <div className="w-full flex flex-col items-center py-16 md:py-12 bg-gray-200 bg-opacity-40 rounded-lg p-2 m-1">
               <div className="w-full flex items-center justify-center">
                           <div className="flex flex-col items-center">
-                              <p className="text-lg sm:text-xl md:text-2xl font-bold text-black">Goals</p>
+                              <p className="text-lg sm:text-xl md:text-2xl font-bold text-black mb-5">Goals</p>
                               <Goal />
                           </div>
                       </div>
                       <div className="flex items-center mt-7">
                           <div className>
-                              <p className="text-xs text-black">Count:</p>
+                          <p className="text-xl text-black font-bold">Count:</p>
                               <p className="mt-2 text-base sm:text-lg md:text-xl 2xl:text-2xl text-black">{goals.length}</p>
                           </div>
                       </div>
@@ -70,13 +70,13 @@ const Home = ({ user }) => {
               <div className="w-full flex flex-col items-center py-16 md:py-12 bg-gray-200 bg-opacity-40 rounded-lg p-2 m-1">
                       <div className="w-full flex items-center justify-center">
                           <div className="flex flex-col items-center">
-                              <p className="text-lg sm:text-xl md:text-2xl font-bold text-black">Tasks</p>
+                              <p className="text-lg sm:text-xl md:text-2xl font-bold text-black mb-5">Tasks</p>
                               <Task />
                           </div>
                       </div>
                       <div className="flex items-center mt-7">
                           <div className>
-                              <p className="text-xs text-black">Count:</p>
+                          <p className="text-xl text-black font-bold">Count:</p>
                               <p className="mt-2 text-base sm:text-lg md:text-xl 2xl:text-2xl text-black">{tasks.length}</p>
                           </div>
                       </div>

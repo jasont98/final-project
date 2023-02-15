@@ -14,12 +14,15 @@ function CreateEventForm() {
     dispatch(setErrorMessage(''));
   }
 
+  const resetForm = () => {
+    dispatch(setCreateEventForm({ title: '', date: '' }));
+  };
+
   const handleCreateSubmit = async (event) => {
     event.preventDefault();
     // const eventDate = new Date(event.target.elements.date.value);
     // console.log(eventDate)
     const eventData = {
-      // id: uuidv4(),
       title: event.target.elements.title.value,
       date: event.target.elements.date.value
     };
@@ -29,12 +32,14 @@ function CreateEventForm() {
     }
     try {
       dispatch(createEventWithServer(eventData));
+      resetForm();
     } catch (error) {
       console.error(error);
     }
   };
+
   return (
-    <form onSubmit={handleCreateSubmit} className="p-5 bg-gray-200">
+    <form onSubmit={handleCreateSubmit} className="p-5 bg-gray-200 rounded-md">
       <div className="mb-3">
         <label className="block text-gray-700 font-medium mb-2">Title:</label>
         <input
@@ -53,7 +58,6 @@ function CreateEventForm() {
           name="date"
           value={createEventForm.date}
           onChange={handleEventFormChange}
-      
         />
       </div>
       {errorMessage && 

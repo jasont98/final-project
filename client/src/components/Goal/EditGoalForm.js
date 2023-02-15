@@ -29,8 +29,9 @@ function EditGoalForm({ goal }) {
       ...editGoalForm,
       id: editingGoal.id,
       description: event.target.elements.description.value,
-
     }));
+    dispatch(setEditGoalForm({}));
+    dispatch(setShowInputs(false));
   };
 
   return (

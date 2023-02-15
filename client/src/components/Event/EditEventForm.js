@@ -29,8 +29,9 @@ function EditEventForm({ event }) {
       ...editEventForm,
       id: editingEvent.id,
       title: event.target.elements.title.value,   
-      
     }));
+    dispatch(setEditEventForm({}));
+    dispatch(setShowInputs(false));
   };
 
   return (

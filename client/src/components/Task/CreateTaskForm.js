@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {useState} from 'react'
 
 
-function CreateTaskForm({goal_id}) {
+function CreateTaskForm() {
   
   const dispatch = useDispatch();
   const createTaskForm = useSelector((state) => state.tasks.createTaskForm);
@@ -15,6 +15,10 @@ function CreateTaskForm({goal_id}) {
     dispatch(setCreateTaskForm({ [name]: value }));
     dispatch(setErrorMessage(''));
   }
+
+  const resetForm = () => {
+    dispatch(setCreateTaskForm({ description: '', date: '' }));
+  };
 
   const handleCreateSubmit = async (event) => {
     event.preventDefault();
@@ -30,6 +34,7 @@ function CreateTaskForm({goal_id}) {
   
     try {
       dispatch(createTaskWithServer(taskData));
+      resetForm();
     } catch (error) {
       console.error(error);
     }

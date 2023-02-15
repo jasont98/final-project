@@ -1,10 +1,8 @@
 import React from 'react'
-import {useState, useEffect} from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import DeleteTask from '../Task/DeleteTask';
 import CreateTaskForm from './CreateTaskForm';
-import EditTaskForm from './EditTaskForm';
-import { updateTaskWithServer, deleteTaskWithServer, fetchTasks } from '../../features/tasksSlice';
+import { updateTaskWithServer, fetchTasks } from '../../features/tasksSlice';
 
 
 const Task = () => {
