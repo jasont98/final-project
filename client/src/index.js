@@ -8,15 +8,18 @@ import { Provider } from "react-redux"
 import store from "./store.js"
 import thunkMiddleware from "redux-thunk";
 
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Router>
-    <Provider store={store}>
-    <App />
-    </Provider>
-  </Router>
+<div style={{background: "linear-gradient(#0C7BB3, #F2BAE8)", height: "100vh", overflow: "auto"}}>
+    <Router>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </Router>
+  </div>
 );
-
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

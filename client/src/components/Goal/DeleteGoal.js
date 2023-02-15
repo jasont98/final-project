@@ -9,9 +9,7 @@ const DeleteGoal = ({id}) => {
     const handleDeleteGoal = (id) => {
         dispatch(deleteGoalWithServer(id));
       };
-
-
-
+      
   return (
     <button onClick={() => handleDeleteGoal(id)}>Delete</button>
   );

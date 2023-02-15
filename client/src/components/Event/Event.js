@@ -13,7 +13,7 @@ function Event({goals, tasks}) {
 
   useEffect(() => {
     dispatch(fetchEvents());
-  }, [dispatch]);
+  }, []);
 
 
   const handleUpdateEvent = (id, event) => {
@@ -29,7 +29,7 @@ function Event({goals, tasks}) {
       {events.map((event) => (
           <li key={event.id}>
             {event.title}
-            <ul>Date: {new Date(event.date + 'T00:00:00+00:00').toLocaleDateString()}</ul>
+            <ul>Date: {new Date(event.date + 'T00:00:00+00:00').toLocaleDateString("en-US", {timeZone: "UTC"})}</ul>
             <button onClick={() => handleUpdateEvent(event.id, event)}>
               {event.completed ? 'Complete' : 'Incomplete'}
             </button>
