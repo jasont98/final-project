@@ -28,9 +28,9 @@ function EditTaskForm({ task }) {
       ...editTaskForm,
       id: editingTask.id,
       description: event.target.elements.description.value,
-      
-    
     }));
+    dispatch(setEditTaskForm({}));
+    dispatch(setShowInputs(false));
   };
 
   return (

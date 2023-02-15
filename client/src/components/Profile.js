@@ -1,12 +1,12 @@
 import {React, useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchEvents, updateEventWithServer, updateEventCompletionWithServer, deleteEventWithServer } from '../features/eventsSlice';
-import { fetchGoals, updateGoalWithServer, deleteGoalWithServer, updateGoalCompletionWithServer } from '../features/goalsSlice';
-import { fetchTasks, updateTaskWithServer, deleteTaskWithServer, updateTaskCompletionWithServer } from '../features/tasksSlice'
+import { fetchEvents, updateEventCompletionWithServer, deleteEventWithServer } from '../features/eventsSlice';
+import { fetchGoals, deleteGoalWithServer, updateGoalCompletionWithServer } from '../features/goalsSlice';
+import { fetchTasks, deleteTaskWithServer, updateTaskCompletionWithServer } from '../features/tasksSlice'
 import EditEventForm from './Event/EditEventForm';
 import EditGoalForm from './Goal/EditGoalForm';
 import EditTaskForm from './Task/EditTaskForm';
-import { Switch } from "@material-tailwind/react";
+
 
 
 
@@ -59,7 +59,7 @@ console.log(formattedDate);
 
 return (
 <div className="p-10">
-  <div className="bg-gray-300 py-6 px-8">
+  <div className="bg-gray-200 py-6 px-8 bg-opacity-40 rounded-md ">
   <h1 className="text-2xl font-bold">Name: {user.name}</h1>
   <h1 className="text-2xl font-bold"> Birthday: {new Date(user.birthday).toLocaleDateString('en-US', {timeZone: 'UTC'})}</h1>
   <h1 className="text-2xl font-bold">Today's Date: {formattedDate}</h1>

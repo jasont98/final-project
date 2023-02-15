@@ -13,6 +13,10 @@ function CreateGoalForm() {
     dispatch(setErrorMessage(''));
   }
 
+   const resetForm = () => {
+    dispatch(setCreateGoalForm({ description: '', date: '' }));
+  };
+
   const handleCreateSubmit = async (event) => {
     // console.log(event.value)
     event.preventDefault();
@@ -26,6 +30,7 @@ function CreateGoalForm() {
     }
     try {
       dispatch(createGoalWithServer(goalData));
+      resetForm();
     } catch (error) {
       console.error(error);
     }
