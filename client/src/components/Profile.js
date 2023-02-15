@@ -75,11 +75,11 @@ return (
       return date === formattedDate
     })
     .map(event => (
-      <div className="p-4 border rounded-lg shadow-md my-4 relative">
-        {/* Ping animation */}
+      <div className="p-4 border rounded-lg shadow-md my-4 relative bg-gray-200 bg-opacity-90">
+      {/* Ping animation */}
         <span className="absolute top-0 right-0 mr-2 mt-2 flex h-4 w-4">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-4 w-4 bg-red-600"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-700 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-4 w-4 bg-purple-600"></span>
         </span>
         {/* Existing code */}
         <div key={event.id}>
@@ -105,11 +105,11 @@ return (
       return date === formattedDate
     })
     .map(goal => (
-      <div className="p-4 border rounded-lg shadow-md my-4 relative">
+        <div className="p-4 border rounded-lg shadow-md my-4 relative bg-gray-200 bg-opacity-90">
         {/* Ping animation */}
         <span className="absolute top-0 right-0 mr-2 mt-2 flex h-4 w-4">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-4 w-4 bg-red-600"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-700 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-4 w-4 bg-purple-600"></span>
         </span>
         {/* Existing code */}
         <div key={goal.id}>
@@ -135,11 +135,11 @@ return (
       return date === formattedDate
     })
     .map(task => (
-      <div className="p-4 border rounded-lg shadow-md my-4 relative">
-        {/* Ping animation */}
+      <div className="p-4 border rounded-lg shadow-md my-4 relative bg-gray-200 bg-opacity-90">
+      {/* Ping animation */}
         <span className="absolute top-0 right-0 mr-2 mt-2 flex h-4 w-4">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-4 w-4 bg-red-600"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-700 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-4 w-4 bg-purple-600"></span>
         </span>
         {/* Existing code */}
         <div key={task.id}>

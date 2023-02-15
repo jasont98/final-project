@@ -12,7 +12,7 @@ import thunkMiddleware from "redux-thunk";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <div style={{background: "linear-gradient(#0C7BB3, #F2BAE8)", height: "100vh"}}>
+<div style={{background: "linear-gradient(#0C7BB3, #F2BAE8)", height: "100vh", overflow: "auto"}}>
     <Router>
       <Provider store={store}>
         <App />

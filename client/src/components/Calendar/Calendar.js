@@ -7,7 +7,6 @@ import {nextMonth, prevMonth, setSelectedDate} from "../../features/calendarSlic
 
 export default function Calendar() {
 
-    // const [currentDate, setCurrentDate] = useState(new Date());
     const selectedDate = useSelector(state => state.calendar.selectedDate)
     const currentDate = useSelector(state => state.calendar.currentDate)
     const today = useSelector(state => state.calendar.today);
@@ -18,46 +17,35 @@ export default function Calendar() {
     const firstDayOfWeek = firstDay.getDay();
     const dispatch = useDispatch();
 
-    // const filteredEvents = events.filter(event => {
-    //     const nums = event.date.split("-");
-    //     const date = new Date(nums[0], nums[1] - 1, nums[2]);
-    //     const selectedMonth = selectedDate.getMonth();
-    //     const currentMonth = currentDate.getMonth();
-    //     const eventMonth = date.getMonth();
-      
-    //     return (
-    //       (selectedMonth === currentMonth && date.getDate() === selectedDate.getDate()) ||
-    //       (selectedMonth !== currentMonth && eventMonth === selectedMonth)
-    //     );
-    //   });
-
     const filteredEvents = events.filter(event => {
         const nums = event.date.split("-");
         const date = new Date(nums[0], nums[1] - 1, nums[2]);
         const selectedDateString = selectedDate.toLocaleDateString();
         const eventDateString = date.toLocaleDateString();
-      
         return selectedDateString === eventDateString;
-      });
-      
+    });
       
     const filteredGoals = goals.filter(goal => {
-        const nums = goal.date.split("-")
-          const date = `${parseInt(nums[1])}/${nums[2]}/${nums[0]}`
-           return date === selectedDate.toLocaleDateString()
+        const nums = goal.date.split("-");
+        const date = new Date(nums[0], nums[1] - 1, nums[2]);
+        const selectedDateString = selectedDate.toLocaleDateString();
+        const goalDateString = date.toLocaleDateString();
+        return selectedDateString === goalDateString;
     });
 
     const filteredTasks = tasks.filter(task => {
-        const nums = task.date.split("-")
-          const date = `${parseInt(nums[1])}/${nums[2]}/${nums[0]}`
-           return date === selectedDate.toLocaleDateString()
+        const nums = task.date.split("-");
+        const date = new Date(nums[0], nums[1] - 1, nums[2]);
+        const selectedDateString = selectedDate.toLocaleDateString();
+        const taskDateString = date.toLocaleDateString();
+        return selectedDateString === taskDateString;
     });
 
     useEffect(() => {
         dispatch(fetchEvents());
         dispatch(fetchGoals());
         dispatch(fetchTasks());
-      }, [dispatch]);
+    }, [dispatch]);
       
     const daysInMonth = () => {
         return new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
@@ -187,7 +175,6 @@ export default function Calendar() {
                             {filteredEvents.map((event, index) => (
                                 <div key={index}>
                                 <p className="text-sm pt-2  text-gray-600 dark:text-gray-300">{event.title}</p>
-                                {/* <p className="text-sm pt-2 leading-4 leading-none text-gray-600 dark:text-gray-300">{event.description}</p> */}
                                 </div>
                             ))}
                             </div>
@@ -214,3 +201,25 @@ export default function Calendar() {
         </>
     );
 }
+
+
+
+  // const filteredEvents = events.filter(event => {
+    //     const nums = event.date.split("-");
+    //     const date = new Date(nums[0], nums[1] - 1, nums[2]);
+    //     const selectedMonth = selectedDate.getMonth();
+    //     const currentMonth = currentDate.getMonth();
+    //     const eventMonth = date.getMonth();
+      
+    //     return (
+    //       (selectedMonth === currentMonth && date.getDate() === selectedDate.getDate()) ||
+    //       (selectedMonth !== currentMonth && eventMonth === selectedMonth)
+    //     );
+    //   });
+
+
+       // const filteredGoals = goals.filter(goal => {
+    //     const nums = goal.date.split("-")
+    //       const date = `${parseInt(nums[1])}/${nums[2]}/${nums[0]}`
+    //        return date === selectedDate.toLocaleDateString()
+    // });
