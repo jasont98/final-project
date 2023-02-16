@@ -23,7 +23,7 @@ function CreateTaskForm() {
   const handleCreateSubmit = async (event) => {
     event.preventDefault();
     const taskData = {
-      id: uuidv4(),
+      // id: uuidv4(),
       description: event.target.elements.description.value,
       date: event.target.elements.date.value
     };

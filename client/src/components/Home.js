@@ -38,7 +38,7 @@ const Home = ({ user }) => {
               <div className="w-full flex flex-col items-center py-16 md:py-12 bg-gray-200 bg-opacity-40 rounded-lg p-2 m-1">
                   <div className="w-full flex items-center justify-center">
                           <div className="flex flex-col items-center">
-                              <p className="text-lg sm:text-xl md:text-2xl font-bold text-black mb-5">Events</p>
+                              <p className="text-lg sm:text-xl md:text-2xl font-bold text-black mb-5">Event</p>
                               <Event />
                           </div>
                       </div>
@@ -54,7 +54,7 @@ const Home = ({ user }) => {
               <div className="w-full flex flex-col items-center py-16 md:py-12 bg-gray-200 bg-opacity-40 rounded-lg p-2 m-1">
               <div className="w-full flex items-center justify-center">
                           <div className="flex flex-col items-center">
-                              <p className="text-lg sm:text-xl md:text-2xl font-bold text-black mb-5">Goals</p>
+                              <p className="text-lg sm:text-xl md:text-2xl font-bold text-black mb-5">Goal</p>
                               <Goal />
                           </div>
                       </div>
@@ -70,7 +70,7 @@ const Home = ({ user }) => {
               <div className="w-full flex flex-col items-center py-16 md:py-12 bg-gray-200 bg-opacity-40 rounded-lg p-2 m-1">
                       <div className="w-full flex items-center justify-center">
                           <div className="flex flex-col items-center">
-                              <p className="text-lg sm:text-xl md:text-2xl font-bold text-black mb-5">Tasks</p>
+                              <p className="text-lg sm:text-xl md:text-2xl font-bold text-black mb-5">Task</p>
                               <Task />
                           </div>
                       </div>
