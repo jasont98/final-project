@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import SigninPage from './SigninPage'
+import SigninPage from './Login-Regi/SigninPage'
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home"
 import NavBar from './NavBar';

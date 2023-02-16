@@ -33,9 +33,9 @@ function SignInCreatePage({user, setUser}) {
      </header>
          </div>
       
-      <div className="container mx-auto p-5 bg-gray-300 justify-center text-center text-xl font-bold">
+      <div className="container mx-auto p-5 bg-gray-300 justify-center text-center rounded text-xl font-bold">
 
-      {user !== null && logout ? <h1 className="ml-2">See you again soon!</h1> : null}
+      {user !== null && logout ? <h1 className="ml-2 mt-2 mb-4">See you again soon!</h1> : null}
       {user === null ? <h1>Welcome</h1> : null}
       {user ? <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full ml-1" onClick={logout}>Logout</button> : null}
       {user === null ? (

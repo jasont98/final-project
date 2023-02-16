@@ -4,7 +4,6 @@ import CreateGoalForm from './CreateGoalForm';
 import EditGoalForm from './EditGoalForm';
 import DeleteGoal from './DeleteGoal';
 import { updateGoalWithServer, fetchGoals, } from '../../features/goalsSlice';
-import AddTaskToGoal from './AddTaskToGoal';
 import {fetchTasks} from '../../features/tasksSlice';
 
 function Goal() {

@@ -55,7 +55,7 @@ const Profile = ({user}) => {
       dispatch(deleteTaskWithServer(id));
     }
 };
-console.log(formattedDate);    
+// console.log(formattedDate);    
 
 return (
 <div className="p-10">
